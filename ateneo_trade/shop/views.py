@@ -11,7 +11,7 @@ from .forms import UserForm,ProfileForm
 @login_required
 def Home(request):
     return render(request, 'home/home.html')
-	
+
 @login_required
 @transaction.atomic
 def update_profile(request):
@@ -31,7 +31,7 @@ def update_profile(request):
         'user_form': user_form,
         'profile_form': profile_form
     })
-	
+
 def Logout(request):
     logout(request)
     return HttpResponseRedirect('/')
