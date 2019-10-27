@@ -26,8 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	‘home’, 
-	‘social_django’,
+	'social_django',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +52,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+				'social_django.context_processors.backends',
+				'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -113,20 +114,16 @@ STATIC_URL = '/static/'
 # Authentication
 
 AUTHENTICATION_BACKENDS = (
- ‘social_core.backends.open_id.OpenIdAuth’,
- ‘social_core.backends.google.GoogleOpenId’,
- ‘social_core.backends.google.GoogleOAuth2’,
- ‘django.contrib.auth.backends.ModelBackend’,
+ 'social_core.backends.open_id.OpenIdAuth',
+ 'social_core.backends.google.GoogleOpenId',
+ 'social_core.backends.google.GoogleOAuth2',
+ 'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_URL_NAMESPACE = ‘social’
-'context_processors': [
-	'social_django.context_processors.backends',
-	'social_django.context_processors.login_redirect',
-],
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 SOCIAL_AUTH_PIPELINE = (
-	'social.pipeline.social_auth.social_details'.
+	'social.pipeline.social_auth.social_details',
 	'social.pipeline.social_auth.social_uid',
 	'social.pipeline.social_auth.auth_allowed',
 	'social.pipeline.social_auth.social_user',
