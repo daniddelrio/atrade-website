@@ -10,7 +10,7 @@ from .forms import UserForm,ProfileForm
 
 @login_required
 def Home(request):
-    return render(request, 'home/home.html')
+    return render(request, 'shop/home.html')
 
 @login_required
 @transaction.atomic
@@ -27,7 +27,7 @@ def update_profile(request):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'home/profile.html', {
+    return render(request, 'shop/profile.html', {
         'user_form': user_form,
         'profile_form': profile_form
     })
