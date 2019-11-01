@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Ateneo Trade
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="landing-page">
+		<div class="atrade-logo">
+			<h1>Ateneo Trade</h1>
+		</div>
+		<div class="google-buttons">
+			<a role="button" href="#" class="btn btn-login">
+				<img class="google-icon" src="{% static 'shop/google-icon.png'%}" alt="Google Icon">
+				<strong>Sign up with Google</strong>
+			</a>
+
+			<a role="button" href="#" class="btn btn-login login">
+				<img class="google-icon" src="{% static 'shop/google-icon.png' %}" alt="Google Icon">
+				<strong>Log in with Google</strong>
+			</a>
+		</div>
+	</div>
+</div>
+{% endblock %}
