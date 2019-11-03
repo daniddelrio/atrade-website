@@ -12,7 +12,7 @@ from django.utils.translation import gettext_lazy as _
 
 @login_required
 def Home(request):
-	return render(request, 'shop/index.html')
+	return render(request, 'shop/home.html')
 
 @login_required
 @transaction.atomic
