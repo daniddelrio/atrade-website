@@ -1,57 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:200,700|Barlow:200,700');
-
 body {
 	/*background-color: #E5E5E5;*/
 	font-family: 'Barlow', sans-serif;
 	color: #4F4F4F;
-}
-
-.landing-page {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-}
-
-.atrade-logo {
-	font-family: 'Alegreya Sans', sans-serif;
-	font-size: 3.2rem;
-	font-weight: 700;
-	text-align: left;
-	align-items: center;
-	color: #0084FF;
-	width: 38%;
-	margin-right: 3rem;
-}
-
-.google-icon {
-	width: 1.5em;
-	height: 1.5em;
-}
-
-.google-buttons {
-	height: 8rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-}
-
-.btn-login {
-	width: 17rem;
-	display: flex;
-	justify-content: center;
-
-	border: 2px solid #0084FF;
-	box-sizing: border-box;
-	border-radius: 10px;
-	font-weight: 700;
-	font-size: 0.8em;
-}
-
-.login {
-	border: 2px solid #828282;
-}
-
-.btn-login strong {
-	padding-left: 1em;
 }
