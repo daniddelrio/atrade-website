@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:200,700|Barlow:200,700');
+
+.landing-page {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10vh;
+}
+
+.atrade-logo {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-size: 3.2rem;
+	font-weight: 700;
+	text-align: center;
+	align-items: center;
+	color: #0084FF;
+}
+
+.google-icon {
+	width: 1.5em;
+	height: 1.5em;
+}
+
+.btn-login {
+	width: 20rem;
+
+	border: 2px solid #0084FF;
+	box-sizing: border-box;
+	border-radius: 10px;
+	font-weight: 700;
+	font-size: 1.2em;
+}
+
+.btn-login strong {
+	padding-left: 1em;
+}
