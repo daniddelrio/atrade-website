@@ -8,6 +8,7 @@ from django.db import transaction
 from .models import Profile
 from .forms import UserForm, ProfileForm
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 
 @login_required
 def Home(request):
