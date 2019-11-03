@@ -9,6 +9,7 @@
   <title>{% block title %}{% endblock %}</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="{% static 'shop/fontawesome/css/all.css' %}">
 
   <link rel="stylesheet" href="{% static 'shop/css/main.css' %}">
   {% block links %}
@@ -16,6 +17,9 @@
 </head>
 
 <body>
+  {% block navbar %}
+  {% endblock %}
+
 	{% block body %}
 	{% endblock %}
 
