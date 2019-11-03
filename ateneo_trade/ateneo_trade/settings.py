@@ -154,3 +154,4 @@ LOGIN_URL = '/account/login/'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '628380427880-alm5sn82vqr2b0voufqpdhleee9dahf8.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'U3oZadw2Bqt60o7mNszsmhks'
+SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ['obf.ateneo.edu', 'ateneo.edu']
