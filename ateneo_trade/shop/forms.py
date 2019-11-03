@@ -11,4 +11,4 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('bio','location','birth_date')
+        fields = ('school','major','grad_year','contact_num','fb_link')
