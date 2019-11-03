@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
-{% block content %}
 {% load static %}
+
+{% block title %}
+Ateneo Trade
+{% endblock %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'shop/css/landing.css' %}">
+{% endblock %}
+
+{% block content %}
 <div class="container">
- <div class="row">
-  <br><br>
-  <div class="col m6 card-panel white offset-m3" style="text-align:center">
-    <h1>Student Portal NIT DGP</h1>
-    <h4>Sign in to access all the facilities</h4>
-    <br>
-    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
-     <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
-    </a>
-    <br>
-  </div>
- </div>
+	<div class="landing-page">
+		<div class="atrade-logo">
+			<h1>Ateneo Trade</h1>
+		</div>
+		<div class="google-buttons">
+			<a role="button" href="{% url 'social:begin' 'google-oauth2' %}?next=/" class="btn btn-login">
+				<img class="google-icon" src="{% static 'shop/google-icon.png' %}" alt="Google Icon">
+				<strong>Log in with Google</strong>
+			</a>
+		</div>
+	</div>
 </div>
 {% endblock %}
