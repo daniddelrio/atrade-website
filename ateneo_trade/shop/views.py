@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.db import transaction
 from .models import Profile
 from .forms import UserForm, ProfileForm
+from django.contrib import messages
 
 @login_required
 def Home(request):
