@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 import datetime
 
 class Profile(models.Model):
@@ -11,7 +11,7 @@ class Profile(models.Model):
 	grad_year = models.IntegerField(validators=[MinValueValidator(1859), MaxValueValidator(9999)], default=datetime.date.today().year,blank=True)
 	major = models.CharField(max_length=10,null=False,blank=True,default="")
 	trade_pts = models.IntegerField(default=0,null=False);
-	contact_num = models.CharField(max_length=11,validators=[RegexValidator(regex='^.{11}$', message='Length has to be 4', code='nomatch')],null=False,blank=False,default="00000000000");
+	contact_num = models.CharField(max_length=11,null=False,blank=False,default="00000000000");
 	fb_link = models.CharField(max_length=40,null=False,blank=False,default="facebook.com/<your_profile>");
 	
 @receiver(post_save, sender=User)
