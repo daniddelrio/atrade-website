@@ -7,7 +7,7 @@ import datetime
 
 class Profile(models.Model):
 	user = models.OneToOneField(User,unique=True, null=False, db_index=True, on_delete=models.CASCADE)
-	school = models.TextField(max_length=4,blank=True)
+	school = models.CharField(max_length=4,blank=True)
 	grad_year = models.IntegerField(validators=[MinValueValidator(1859), MaxValueValidator(9999)], default=datetime.date.today().year,blank=True)
 	major = models.CharField(max_length=10,null=False,blank=True,default="")
 	trade_pts = models.IntegerField(default=0,null=False);
