@@ -1,5 +1,8 @@
 from django.urls import path, include
+from . import views
 
 urlpatterns = [
-    # path('', include('shop.urls'))
+    path('', views.Home, name='home'),
+    path('profile/', views.update_profile, name='profile'),
+    path('account/logout/', views.Logout, name='logout'),
 ]
