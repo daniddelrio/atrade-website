@@ -38,7 +38,7 @@ class Item(models.Model):
 		('clothes', 'Clothes'),
 	]
 	user = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE, unique=True)
-	price = DecimalField(decimal_places=2, default=0.00, max_digits=11)
+	price = models.DecimalField(decimal_places=2, max_digits=11)
 	description = models.TextField(default="")
-	category = Models.CharField(choices=CATEGORIES, default="", max_digits=100)
-	location = Models.CharField(default="AdMU", max_digits=200)
+	category = models.CharField(choices=CATEGORIES, default="", max_length=100)
+	location = models.CharField(default="AdMU", max_length=200)
