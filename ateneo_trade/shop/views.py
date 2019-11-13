@@ -42,9 +42,11 @@ def Logout(request):
 @transaction.atomic
 def post_item(request):
 	if request.method == 'POST':
-		item_form = ItemForm(request.POST, instance=request.user)
+		item_form = ItemForm(request.POST)
 		if item_form.is_valid():
-			item_form.save()
+			item = item_form.save(commit=False)
+			item.user = request.user
+			item.save()
 			return HttpResponseRedirect('/')
 		else:
 			messages.error(request, _('Please correct the error below.'))
