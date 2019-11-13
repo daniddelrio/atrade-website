@@ -38,7 +38,8 @@ class Item(models.Model):
 		('clothes', 'Clothes'),
 	]
 	user = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE, unique=True)
+	name = models.CharField(default="", max_length=150)
 	price = models.DecimalField(decimal_places=2, max_digits=11)
 	description = models.TextField(default="")
 	category = models.CharField(choices=CATEGORIES, default="", max_length=100)
-	location = models.CharField(default="AdMU", max_length=200)
+	location = models.CharField(default="Ateneo de Manila University", max_length=200)
