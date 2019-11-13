@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.db import transaction
-from .models import Profile
-from .forms import UserForm, ProfileForm
+from .models import Profile, Item
+from .forms import UserForm, ProfileForm, ItemForm
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
@@ -37,3 +37,17 @@ def update_profile(request):
 def Logout(request):
 	logout(request)
 	return HttpResponseRedirect('/')
+
+@login_required
+@transaction.atomic
+def post_item(request):
+	if request.method == 'POST':
+		item_form = ItemForm(request.POST, instance=request.user)
+		if item_form.is_valid():
+			item_form.save()
+			return HttpResponseRedirect('/')
+		else:
+			messages.error(request, _('Please correct the error below.'))
+	else:
+		item_form = ItemForm(instance=request.user)
+	return render(request, 'shop/item.html', {'item_form': item_form})
