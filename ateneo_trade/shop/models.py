@@ -37,7 +37,7 @@ class Item(models.Model):
 		('school_supplies', 'School Supplies'),
 		('clothes', 'Clothes'),
 	]
-	user = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE, unique=True)
+	user = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE)
 	name = models.CharField(default="", max_length=150)
 	price = models.DecimalField(decimal_places=2, max_digits=11)
 	description = models.TextField(default="")
