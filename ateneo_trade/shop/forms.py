@@ -17,4 +17,4 @@ class ProfileForm(forms.ModelForm):
 class ItemForm(forms.ModelForm):
 	class Meta:
 		model = Item
-		fields = ('price','description','category','location')
+		fields = ('name','price','description','category','location')
