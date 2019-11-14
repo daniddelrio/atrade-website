@@ -16,4 +16,38 @@ Post Item
 {% endblock %}
 
 {% block content %}
+<div class="post-form">
+	<div class="form-row mb-lg-4">
+		<label for="item-name" class="col-lg-3 col-form-label">Item Name</label>
+		<div class="col-lg-9">
+			<input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="item-name">
+		</div>
+	</div>
+	<div class="form-row mb-lg-4">
+		<label for="item-price" class="col-lg-3 col-form-label">Price</label>
+		<div class="col-lg-9">
+			<input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="item-price">
+		</div>
+	</div>
+	<div class="form-row mb-lg-4">
+		<label for="item-desc" class="col-lg-3 col-form-label">Description</label>
+		<div class="col-lg-9">
+			<textarea class="form-control form-control-sm px-lg-3" rows="5" id="item-desc"></textarea>
+		</div>
+	</div>
+	<div class="form-row mb-lg-4">
+		<label for="item-category" class="col-lg-3 col-form-label">Category</label>
+		<div class="col-lg-5">
+			<select class="custom-select custom-select-sm px-lg-3" id="item-category" name="item-category">
+			  <option>Category</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-row mb-lg-4">
+		<label for="item-location" class="col-lg-3 col-form-label">Meetup Location/s</label>
+		<div class="col-lg-9">
+			<input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="item-location">
+		</div>
+	</div>
+</div>
 {% endblock %}

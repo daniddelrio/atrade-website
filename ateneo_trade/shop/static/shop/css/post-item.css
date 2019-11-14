@@ -1,2 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:200,700|Barlow:200,700');
+.post-form {
+	margin: 3rem 12rem auto 12rem;
+}
 
+.form-control {
+	border: 1px solid #828282;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+
+.custom-select {
+	border: 1px solid #828282;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
