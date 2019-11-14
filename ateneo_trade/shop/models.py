@@ -43,12 +43,7 @@ class Item(models.Model):
 	description = models.TextField(default="")
 	category = models.CharField(choices=CATEGORIES, default="", max_length=100)
 	location = models.CharField(default="Ateneo de Manila University", max_length=200)
-
-def user_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    return 'user_{0}/{1}'.format(instance.user.id, filename)
-
-class Image(models.Model):
-	item_id = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
-	image = models.ImageField(upload_to=user_directory_path)
 	
+class Image(models.Model):
+	item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
+	image = models.ImageField(upload_to='images/%Y/%m/%d/')

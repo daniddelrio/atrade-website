@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.db import transaction
-from .models import Profile, Item
-from .forms import UserForm, ProfileForm, ItemForm
+from .models import Profile, Item, Image
+from .forms import UserForm, ProfileForm, ItemForm, ImageForm
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.forms import formset_factory
@@ -42,21 +42,25 @@ def Logout(request):
 @login_required
 @transaction.atomic
 def post_item(request):
-	ImageFormSet = formset_factory(Image, form=ImageForm, extra=5)
+	ImageFormSet = formset_factory(ImageForm, extra=5)
 	
 	if request.method == 'POST':
 		item_form = ItemForm(request.POST)
-		formset = ImageFormSet(request.POST, request.FILES, queryset=Images.objects.none())
+		formset = ImageFormSet(request.POST, request.FILES)
 		
-		if item_form.is_valid() and formset.is_valid:
+		if item_form.is_valid() and formset.is_valid():
 			item = item_form.save(commit=False)
 			item.user = request.user
 			item.save()
 			
-			for form in formset.cleaned_data:
-				image = form['image']
-				photo = Image(post=post_form, image=image)
-				photo.save()
+			for form in formset:
+				if form.is_valid():
+					try:
+						photo = form.save(commit=False)
+						photo.item = item
+						photo.save()
+					except:
+						messages.error(request, "Database error. Please try again.")
 			
 			messages.success(request, 'Item uploaded successfully!')
 			return HttpResponseRedirect('/')
@@ -64,5 +68,6 @@ def post_item(request):
 			messages.error(request, _('Please correct the error below.'))
 	else:
 		item_form = ItemForm(instance=request.user)
+		formset = ImageFormSet()
 	
-	return render(request, 'shop/item.html', {'item_form': item_form, 'formset': formset}, context_instance=RequestContext(request))
+	return render(request, 'shop/item.html', {'item_form': item_form, 'formset': formset})
