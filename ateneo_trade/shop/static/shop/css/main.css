@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:200,700|Barlow:200,700');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:200,700|Barlow:400,700');
 
 body {
 	/*background-color: #E5E5E5;*/
 	font-family: 'Barlow', sans-serif;
+	font-weight: 400;
 	color: #4F4F4F;
 }
 
