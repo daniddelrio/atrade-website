@@ -155,6 +155,8 @@ SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
 
 LOGIN_URL = '/account/login/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '628380427880-alm5sn82vqr2b0voufqpdhleee9dahf8.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'U3oZadw2Bqt60o7mNszsmhks'
