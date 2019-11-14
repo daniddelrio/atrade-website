@@ -49,6 +49,6 @@ def user_directory_path(instance, filename):
     return 'user_{0}/{1}'.format(instance.user.id, filename)
 
 class Image(models.Model):
-	item_id = models.ForeignKey(Item)
+	item_id = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to=user_directory_path)
 	
