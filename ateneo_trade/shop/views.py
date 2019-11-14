@@ -9,6 +9,7 @@ from .models import Profile, Item
 from .forms import UserForm, ProfileForm, ItemForm
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from django.forms import formset_factory
 
 @login_required
 def Home(request):
@@ -41,15 +42,27 @@ def Logout(request):
 @login_required
 @transaction.atomic
 def post_item(request):
+	ImageFormSet = formset_factory(Image, form=ImageForm, extra=5)
+	
 	if request.method == 'POST':
 		item_form = ItemForm(request.POST)
-		if item_form.is_valid():
+		formset = ImageFormSet(request.POST, request.FILES, queryset=Images.objects.none())
+		
+		if item_form.is_valid() and formset.is_valid:
 			item = item_form.save(commit=False)
 			item.user = request.user
 			item.save()
+			
+			for form in formset.cleaned_data:
+				image = form['image']
+				photo = Image(post=post_form, image=image)
+				photo.save()
+			
+			messages.success(request, 'Item uploaded successfully!')
 			return HttpResponseRedirect('/')
 		else:
 			messages.error(request, _('Please correct the error below.'))
 	else:
 		item_form = ItemForm(instance=request.user)
-	return render(request, 'shop/item.html', {'item_form': item_form})
+	
+	return render(request, 'shop/item.html', {'item_form': item_form, 'formset': formset}, context_instance=RequestContext(request))
