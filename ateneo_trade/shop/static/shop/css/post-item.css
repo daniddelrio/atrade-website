@@ -27,3 +27,8 @@
 	left: 42%;
 	top: 40%;
 }
+
+.item-btn {
+	border-radius: 10px;
+	width: 7rem
+}
