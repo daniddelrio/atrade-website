@@ -1,5 +1,5 @@
 .post-form {
-	margin: 3rem 12rem auto 12rem;
+	margin: 3rem 12rem 5rem 12rem;
 }
 
 .form-control {
@@ -13,4 +13,17 @@
 	border: 1px solid #828282;
 	box-sizing: border-box;
 	border-radius: 10px;
+}
+
+.upload-image {
+	position: relative;
+	background: #E0E0E0;
+	height: 90px;
+	width: 90px;
+}
+
+.upload-icon {
+	position: absolute;
+	left: 42%;
+	top: 40%;
 }
