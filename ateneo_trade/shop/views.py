@@ -35,6 +35,9 @@ def update_profile(request):
 		'profile_form': profile_form
 	})
 
+def post_item(request):
+	return render(request, 'shop/post_item.html')
+
 def Logout(request):
 	logout(request)
 	return HttpResponseRedirect('/')
