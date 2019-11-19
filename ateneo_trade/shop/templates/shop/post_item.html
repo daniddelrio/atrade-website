@@ -1,0 +1,98 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block title %}
+Post Item
+{% endblock %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'shop/css/post-item.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="banner-title">
+	<h5>Post Items for Sale</h5>
+</div>
+{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="post-form">
+		<div class="form-row mb-lg-4">
+			<label for="item-name" class="col-lg-3 col-form-label">Item Name</label>
+			<div class="col-lg-9">
+				{{ item_form.name }}
+			</div>
+		</div>
+		<div class="form-row mb-lg-4">
+			<label for="item-price" class="col-lg-3 col-form-label">Price</label>
+			<div class="col-lg-9">
+				{{ item_form.price }}
+			</div>
+		</div>
+		<div class="form-row mb-lg-4">
+			<label for="item-desc" class="col-lg-3 col-form-label">Description</label>
+			<div class="col-lg-9">
+				{{ item_form.description }}
+			</div>
+		</div>
+
+		<div class="form-row mb-lg-4">
+			<div class="col-lg-3 col-form-label">
+				<label for="item-category" class="mb-sm-0">Category</label>
+				<small id="passwordHelpBlock" class="form-text text-muted mt-sm-0">
+				  Select one
+				</small>
+			</div>
+			<div class="col-lg-5 mt-lg-2">
+				{{ item_form.category }}
+			</div>
+		</div>
+		<div class="form-row mb-sm-4">
+			<label for="item-location" class="col-lg-3 col-form-label">Meetup Location/s</label>
+			<div class="col-lg-9">
+				{{ item_form.location }}
+			</div>
+		</div>
+
+		<div class="form-row mb-lg-4">
+			<div class="col-lg-3 col-form-label">
+				<label for="item-category" class="mb-sm-0">Upload Images</label>
+				<small id="passwordHelpBlock" class="form-text text-muted mt-sm-0">
+				  Upload up to five images
+				</small>
+			</div>
+			<div class="col-lg-9">
+				<div class="d-flex flex-row flex-wrap">
+					{{ formset.management_form }}
+					{% for form in formset %}
+						<div style="margin:0.2em">
+							{{ form.image }}
+							<!-- <div class="upload-image col ml-md-1" onclick="uploadFile()"> -->
+								<!-- <img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}"> -->
+							<!-- </div> -->
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		
+		<div class="item-buttons d-flex justify-content-lg-end justify-content-sm-between flex-wrap">
+			<a role="button" href="{% url 'home' %}" class="btn btn-light font-weight-bold item-btn mr-md-4">
+              Cancel
+            </a>
+			<button type="submit" class="btn btn-primary font-weight-bold item-btn">
+              Post Items
+			</button>
+		</div>
+	</div>
+</form>
+
+<!-- currently unused -->
+<script>
+	function uploadFile(){
+	     document.getElementById("item-image").click();
+	}
+</script>
+{% endblock %}

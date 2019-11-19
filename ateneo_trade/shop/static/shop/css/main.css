@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans:200,700|Barlow:400,700');
+
 body {
 	/*background-color: #E5E5E5;*/
 	font-family: 'Barlow', sans-serif;
+	font-weight: 400;
 	color: #4F4F4F;
 }
 
@@ -11,4 +14,18 @@ body {
 
 .nav-btn {
 	font-size: 0.9em !important;
+}
+
+.banner-title {
+	padding-left: 10em;
+	padding-top: 1em;
+	padding-bottom: 0.9em;
+	background-color: #0084FF;
+	color: white;
+}
+
+.banner-title h5 {
+	font-family: 'Barlow', sans-serif;
+	font-size: 1.2rem;
+	font-weight: 700;
 }
