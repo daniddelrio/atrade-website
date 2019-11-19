@@ -73,4 +73,4 @@ def post_item(request):
 		item_form = ItemForm(instance=request.user)
 		formset = ImageFormSet()
 	
-	return render(request, 'shop/item.html', {'item_form': item_form, 'formset': formset})
+	return render(request, 'shop/post_item.html', {'item_form': item_form, 'formset': formset})

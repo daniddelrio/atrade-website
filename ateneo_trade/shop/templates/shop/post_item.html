@@ -22,21 +22,40 @@ Post Item
 		<div class="form-row mb-lg-4">
 			<label for="item-name" class="col-lg-3 col-form-label">Item Name</label>
 			<div class="col-lg-9">
-				<input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="item-name">
+				{{ item_form.name }}
 			</div>
 		</div>
 		<div class="form-row mb-lg-4">
 			<label for="item-price" class="col-lg-3 col-form-label">Price</label>
 			<div class="col-lg-9">
-				<input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="item-price">
+				{{ item_form.price }}
 			</div>
 		</div>
 		<div class="form-row mb-lg-4">
 			<label for="item-desc" class="col-lg-3 col-form-label">Description</label>
 			<div class="col-lg-9">
-				<textarea class="form-control form-control-sm px-lg-3" rows="5" id="item-desc"></textarea>
+				{{ item_form.description }}
 			</div>
 		</div>
+
+		<div class="form-row mb-lg-4">
+			<div class="col-lg-3 col-form-label">
+				<label for="item-category" class="mb-sm-0">Category</label>
+				<small id="passwordHelpBlock" class="form-text text-muted mt-sm-0">
+				  Select one
+				</small>
+			</div>
+			<div class="col-lg-5 mt-lg-2">
+				{{ item_form.category }}
+			</div>
+		</div>
+		<div class="form-row mb-sm-4">
+			<label for="item-location" class="col-lg-3 col-form-label">Meetup Location/s</label>
+			<div class="col-lg-9">
+				{{ item_form.location }}
+			</div>
+		</div>
+
 		<div class="form-row mb-lg-4">
 			<div class="col-lg-3 col-form-label">
 				<label for="item-category" class="mb-sm-0">Upload Images</label>
@@ -46,7 +65,13 @@ Post Item
 			</div>
 			<div class="col-lg-9">
 				<div class="d-flex flex-row flex-wrap">
-					<div class="upload-image col">
+					{% for form in formset %}
+						{{ form.image }}
+						<div class="upload-image col ml-md-1" onclick="uploadFile()">
+							<img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}">
+						</div>
+					{% endfor %}
+					<!-- <div class="upload-image col">
 						<img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}">
 					</div>
 					<div class="upload-image col ml-md-1">
@@ -60,29 +85,11 @@ Post Item
 					</div>
 					<div class="upload-image col ml-md-1">
 						<img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}">
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
-		<div class="form-row mb-lg-4">
-			<div class="col-lg-3 col-form-label">
-				<label for="item-category" class="mb-sm-0">Category</label>
-				<small id="passwordHelpBlock" class="form-text text-muted mt-sm-0">
-				  Select one
-				</small>
-			</div>
-			<div class="col-lg-5 mt-lg-2">
-				<select class="custom-select custom-select-sm px-lg-3" id="item-category" name="item-category">
-				  <option>Category</option>
-				</select>
-			</div>
-		</div>
-		<div class="form-row mb-sm-4">
-			<label for="item-location" class="col-lg-3 col-form-label">Meetup Location/s</label>
-			<div class="col-lg-9">
-				<input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="item-location">
-			</div>
-		</div>
+		
 		<div class="item-buttons d-flex justify-content-lg-end justify-content-sm-between flex-wrap">
 			<a role="button" href="#" class="btn btn-light font-weight-bold item-btn mr-md-4">
               Cancel
@@ -93,4 +100,10 @@ Post Item
 		</div>
 	</div>
 </form>
+
+<script>
+	function uploadFile(){
+	     document.getElementById("item-image").click();
+	}
+</script>
 {% endblock %}
