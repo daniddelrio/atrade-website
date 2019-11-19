@@ -44,16 +44,6 @@ class ItemForm(forms.ModelForm):
 		fields = ('name','price','description','category','location')
 
 class ImageForm(forms.ModelForm):
-	def __init__(self, *args, **kwargs):
-		super(ImageForm, self).__init__(*args, **kwargs)
-		self.fields['image'].widget.attrs={
-			'id' : 'item-image',
-			'style': 'display: none;',
-			'required': False
-		}
 	class Meta:
 		model = Image
 		fields = ('image',)
-		# widgets = {'image':forms.FileInput(
-  #       attrs={'style':'display: none;','class':'form-control', 'required': False, } 
-  #        )}

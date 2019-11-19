@@ -66,26 +66,13 @@ Post Item
 			<div class="col-lg-9">
 				<div class="d-flex flex-row flex-wrap">
 					{% for form in formset %}
-						{{ form.image }}
-						<div class="upload-image col ml-md-1" onclick="uploadFile()">
-							<img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}">
+						<div style="margin:0.2em">
+							{{ form.image }}
 						</div>
+						<!-- <div class="upload-image col ml-md-1" onclick="uploadFile()"> -->
+							<!-- <img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}"> -->
+						<!-- </div> -->
 					{% endfor %}
-					<!-- <div class="upload-image col">
-						<img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}">
-					</div>
-					<div class="upload-image col ml-md-1">
-						<img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}">
-					</div>
-					<div class="upload-image col ml-md-1">
-						<img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}">
-					</div>
-					<div class="upload-image col ml-md-1">
-						<img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}">
-					</div>
-					<div class="upload-image col ml-md-1">
-						<img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}">
-					</div> -->
 				</div>
 			</div>
 		</div>
@@ -101,6 +88,7 @@ Post Item
 	</div>
 </form>
 
+<!-- currently unused -->
 <script>
 	function uploadFile(){
 	     document.getElementById("item-image").click();
