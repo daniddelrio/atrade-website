@@ -29,13 +29,12 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
 	instance.profile.save()
 
-# TODO: add image uploading
 class Item(models.Model):
 	CATEGORIES = [
-		('academic_books', 'Academic Books'),
-		('nacademic_books', 'Non-Academic Books'),
-		('school_supplies', 'School Supplies'),
-		('clothes', 'Clothes'),
+		('Academic Books', 'Academic Books'),
+		('Non-Academic Books', 'Non-Academic Books'),
+		('School Supplies', 'School Supplies'),
+		('Clothes', 'Clothes'),
 	]
 	user = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE)
 	name = models.CharField(default="", max_length=150)
