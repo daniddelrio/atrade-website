@@ -49,6 +49,11 @@ def post_item(request):
 	
 	if request.method == 'POST':
 		item_form = ItemForm(request.POST)
+		data = {
+			'form-TOTAL_FORMS': u'1',
+			'form-INITIAL_FORMS': u'0',
+			'form-MAX_NUM_FORMS': u'5',
+		}
 		formset = ImageFormSet(request.POST, request.FILES)
 		
 		if item_form.is_valid() and formset.is_valid():

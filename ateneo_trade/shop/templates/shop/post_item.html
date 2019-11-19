@@ -16,7 +16,7 @@ Post Item
 {% endblock %}
 
 {% block content %}
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	<div class="post-form">
 		<div class="form-row mb-lg-4">
@@ -65,25 +65,26 @@ Post Item
 			</div>
 			<div class="col-lg-9">
 				<div class="d-flex flex-row flex-wrap">
+					{{ formset.management_form }}
 					{% for form in formset %}
 						<div style="margin:0.2em">
 							{{ form.image }}
+							<!-- <div class="upload-image col ml-md-1" onclick="uploadFile()"> -->
+								<!-- <img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}"> -->
+							<!-- </div> -->
 						</div>
-						<!-- <div class="upload-image col ml-md-1" onclick="uploadFile()"> -->
-							<!-- <img class="upload-icon" src="{% static 'shop/assets/upload.svg' %}"> -->
-						<!-- </div> -->
 					{% endfor %}
 				</div>
 			</div>
 		</div>
 		
 		<div class="item-buttons d-flex justify-content-lg-end justify-content-sm-between flex-wrap">
-			<a role="button" href="#" class="btn btn-light font-weight-bold item-btn mr-md-4">
+			<a role="button" href="{% url 'home' %}" class="btn btn-light font-weight-bold item-btn mr-md-4">
               Cancel
             </a>
-			<a role="button" href="#" class="btn btn-primary font-weight-bold item-btn">
+			<button type="submit" class="btn btn-primary font-weight-bold item-btn">
               Post Items
-            </a>
+			</button>
 		</div>
 	</div>
 </form>
