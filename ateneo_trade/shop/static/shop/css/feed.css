@@ -40,12 +40,14 @@
 	height: 2.4em;
 	border-radius: 10px 10px 0px 0px;
 	background-color: white;
-	padding-left: 3.8rem;
-	padding-top: 4.9rem;
 }
 
 .more-categories p {
 	font-family: 'Alegreya Sans', sans-serif;
 	font-size: 1em;
 	font-weight: 700;
+}
+
+.arrow-img {
+	min-height: 15px !important;
 }
