@@ -51,3 +51,48 @@
 .arrow-img {
 	min-height: 15px !important;
 }
+
+.item-card {
+	margin: auto;
+	margin-top: 3rem;
+	margin-bottom: 2rem;
+	max-width: 45rem;
+	height: 22rem;
+	overflow: hidden;
+}
+
+.card-title {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-weight: 700;
+}
+
+.price-text {
+	font-family: 'Barlow', sans-serif;
+	font-size: 1em;
+	font-weight: 700;
+	color: #0ACF1E;
+}
+
+.card-info {
+	line-height: 0.4em;
+}
+
+.card-text {
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.8em;
+	color: #333333;
+}
+
+.item-category {
+	height: 1.4rem;
+	max-width: 100%;
+	background-color: #E0E0E0;
+	border-radius: 20px;
+
+	text-align: center;
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.7em;
+	font-weight: 700;
+	color: #828282;
+	margin: 0.2em;
+}
