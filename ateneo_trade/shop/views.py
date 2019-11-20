@@ -94,6 +94,6 @@ class ViewItemDetail(TemplateView):
 		seller_id = Item.objects.values('user_id').get(id=item_id)['user_id']
 		seller_fn = User.objects.values('first_name').get(id=seller_id)['first_name']
 		seller_ln = User.objects.values('last_name').get(id=seller_id)['last_name']
-		images = Image.objects.all().filter(id=item_id)
+		images = Image.objects.filter(item=item_id)
 		args = { 'id':item_id,'name':name, 'price':price, 'description':description, 'category':category, 'location':location, 'seller_fn':seller_fn, 'seller_ln':seller_ln, 'images':images }
 		return render(request, self.template_name, args)

@@ -6,4 +6,9 @@
 <div>{{ category }}</div>
 <div>{{ location }}</div>
 <div>{{ seller_fn }} {{ seller_ln }}</div>
+{% for image in images %}
+    {% if image.image != "" %}
+        <div><img src="/media/{{ image.image }}" style="width:200px; height:200px; margin:0.2em;"></div>
+    {% endif %}
+{% endfor %}
 {% endblock %}
