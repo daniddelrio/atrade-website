@@ -1,0 +1,12 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ item_form.as_p }}
+	{{ formset.management_form }}
+	{% for form in formset %}
+		{{ form }}
+	{% endfor %}
+	<button type="submit">Save changes</button>
+</form>
+{% endblock %}
