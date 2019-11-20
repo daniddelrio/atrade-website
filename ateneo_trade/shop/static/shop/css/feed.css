@@ -1,0 +1,51 @@
+.feed-title {
+	padding-top: 1.5em;
+	padding-bottom: 2em;
+	background-color: #0084FF;
+	color: white;
+}
+
+.feed-title h5 {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.category-card {
+	width: 13em;
+	height: 7.7em;
+	border-radius: 10px;
+	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+	margin-top: -1.7rem;
+	margin-left: 2rem;
+}
+
+.category-title {
+	width: 100%;
+	height: 2.4em;
+	border-radius: 10px 10px 0px 0px;
+	background-color: white;
+	padding-left: 1.6em;
+	padding-top: 0.5em;
+}
+
+.category-title p {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.more-categories {
+	width: 100%;
+	height: 2.4em;
+	border-radius: 10px 10px 0px 0px;
+	background-color: white;
+	padding-left: 3.8rem;
+	padding-top: 4.9rem;
+}
+
+.more-categories p {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-size: 1em;
+	font-weight: 700;
+}

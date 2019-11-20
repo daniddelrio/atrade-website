@@ -1,0 +1,41 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block title %}
+Post Item
+{% endblock %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'shop/css/feed.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="feed-title">
+	<h5 class="text-center">Ateneo Trade</h5>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
+		<div class="category-title">
+			<p>Clothes</p>
+		</div>
+	</div>
+	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
+		<div class="category-title">
+			<p>Clothes</p>
+		</div>
+	</div>
+	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
+		<div class="category-title">
+			<p>Clothes</p>
+		</div>
+	</div>
+	<div class="category-card">
+		<div class="more-categories d-flex">
+			<p>More Categories</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
