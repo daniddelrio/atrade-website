@@ -1,12 +1,14 @@
 {% extends 'navbar.html' %}
 {% block content %}
-<form method="post" enctype="multipart/form-data">
-	{% csrf_token %}
-	{{ item_form.as_p }}
-	{{ formset.management_form }}
-	{% for form in formset %}
-		{{ form }}
-	{% endfor %}
-	<button type="submit">Save changes</button>
-</form>
+<div>{{ name }}</div>
+<div>{{ price }}</div>
+<div>{{ description }}</div>
+<div>{{ category }}</div>
+<div>{{ location }}</div>
+<div>{{ seller_fn }} {{ seller_ln }}</div>
+{% for image in images %}
+    {% if image.image != "" %}
+        <div><img src="/media/{{ image.image }}" style="width:200px; height:200px; margin:0.2em;"></div>
+    {% endif %}
+{% endfor %}
 {% endblock %}
