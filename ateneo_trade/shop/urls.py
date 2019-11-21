@@ -8,4 +8,6 @@ urlpatterns = [
     path('profile/', views.update_profile, name='profile'),
     path('post/', views.post_item, name='post_item'),
     path('account/logout/', views.Logout, name='logout'),
+
+	path('item/<int:id>/detail/', views.ViewItemDetail.as_view(), name='view-item-detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
