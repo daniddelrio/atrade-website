@@ -44,7 +44,7 @@
     <div class="row no-gutters">
         <div class="col-sm-6">
             {% with item.image_set.all|first as img %}
-                <img class="card-img" src="/media/{{ img.image }}" alt="{{item.name}}">
+                <a href="item/{{item.pk}}/detail/"><img class="card-img" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
             {% endwith %}
         </div>
         <div class="col-sm-6">
@@ -52,11 +52,11 @@
             <div class="card-info mb-md-3">
                 <h4 class="card-title"><a href="item/{{item.pk}}/detail/">{{ item.name }}</a></h4>
                 <p class="price-text">₱ {{ item.price }}</p>
-                <div class="row">
-                    <div class="col-sm-2">
+                <div class="row location-row">
+                    <div class="col-sm-1">
                             <img src="{% static 'shop/assets/place.svg' %}" alt="Succulents">
                     </div>
-                    <div>
+                    <div class="col-sm-10">
                         <small class="text-muted">{{ item.location }}</small>
                     </div>
                 </div>
