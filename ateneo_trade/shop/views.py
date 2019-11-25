@@ -11,10 +11,7 @@ from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.forms import formset_factory
 from django.views.generic.base import TemplateView
-
-@login_required
-def Home(request):
-	return render(request, 'shop/home.html')
+from django.views.generic.list import ListView
 
 @login_required
 @transaction.atomic
@@ -36,8 +33,9 @@ def update_profile(request):
 		'profile_form': profile_form
 	})
 
-def feed(request):
-	return render(request, 'shop/feed.html')
+@login_required
+def post_item(request):
+	return render(request, 'shop/post_item.html')
 
 def Logout(request):
 	logout(request)
@@ -81,19 +79,15 @@ def post_item(request):
 	
 	return render(request, 'shop/post_item.html', {'item_form': item_form, 'formset': formset})
 
+class Home(ListView):
+	template_name = 'shop/home.html'
+	model = Item
+	ordering = ['-id']
+
 class ViewItemDetail(TemplateView):
 	template_name = 'shop/item.html'
-	
+
 	def get( self, request, id ):
 		item_id = id
-		name = Item.objects.values('name').get(id=item_id)['name']
-		price = Item.objects.values('price').get(id=item_id)['price']
-		description = Item.objects.values('description').get(id=item_id)['description']
-		category = Item.objects.values('category').get(id=item_id)['category']
-		location = Item.objects.values('location').get(id=item_id)['location']
-		seller_id = Item.objects.values('user_id').get(id=item_id)['user_id']
-		seller_fn = User.objects.values('first_name').get(id=seller_id)['first_name']
-		seller_ln = User.objects.values('last_name').get(id=seller_id)['last_name']
-		images = Image.objects.filter(item=item_id)
-		args = { 'id':item_id,'name':name, 'price':price, 'description':description, 'category':category, 'location':location, 'seller_fn':seller_fn, 'seller_ln':seller_ln, 'images':images }
-		return render(request, self.template_name, args)
+		item = Item.objects.get(id=item_id)
+		return render(request, self.template_name, { 'item':item })

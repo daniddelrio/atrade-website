@@ -1,14 +1,14 @@
 {% extends 'navbar.html' %}
 {% block content %}
-<div>{{ name }}</div>
-<div>{{ price }}</div>
-<div>{{ description }}</div>
-<div>{{ category }}</div>
-<div>{{ location }}</div>
-<div>{{ seller_fn }} {{ seller_ln }}</div>
-{% for image in images %}
+<div>{{ item.name }}</div>
+<div>{{ item.price }}</div>
+<div>{{ item.description }}</div>
+<div>{{ item.category }}</div>
+<div>{{ item.location }}</div>
+<div>{{ item.user.get_full_name }}</div>
+{% for image in item.image_set.all %}
     {% if image.image != "" %}
-        <div><img src="/media/{{ image.image }}" style="width:200px; height:200px; margin:0.2em;"></div>
+        <div><img src="/media/{{ image.image }}" style="width:200px; height:200px; margin:0.2em;" alt="{{ item.name }}"></div>
     {% endif %}
 {% endfor %}
 {% endblock %}
