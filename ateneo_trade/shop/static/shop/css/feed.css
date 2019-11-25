@@ -1,0 +1,157 @@
+.feed-title {
+	padding-top: 1.5em;
+	padding-bottom: 2em;
+	background-color: #0084FF;
+	color: white;
+}
+
+.feed-title h5 {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.category-card {
+	width: 13em;
+	height: 7.7em;
+	border-radius: 10px;
+	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+	margin-top: -1.7rem;
+	margin-left: 2rem;
+}
+
+.category-title {
+	width: 100%;
+	height: 2.4em;
+	border-radius: 10px 10px 0px 0px;
+	background-color: white;
+	padding-left: 1.6em;
+	padding-top: 0.5em;
+}
+
+.category-title p {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.more-categories {
+	width: 100%;
+	height: 2.4em;
+	border-radius: 10px 10px 0px 0px;
+	background-color: white;
+}
+
+.more-categories p {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-size: 1em;
+	font-weight: 700;
+}
+
+.arrow-img {
+	min-height: 15px !important;
+}
+
+.item-card {
+	margin: auto;
+	margin-top: 3rem;
+	margin-bottom: 2rem;
+	max-width: 45rem;
+	/*height: 22rem;*/
+	height: auto;
+	overflow: hidden;
+	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+}
+
+.card-title {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-weight: 700;
+}
+
+.price-text {
+	font-family: 'Barlow', sans-serif;
+	font-size: 1em;
+	font-weight: 700;
+	color: #0ACF1E;
+}
+
+.card-info {
+	line-height: 0.4em;
+}
+
+.card-text {
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.8em;
+	color: #333333;
+}
+
+.item-category {
+	height: 1.4rem;
+	max-width: 100%;
+	background-color: #E0E0E0;
+	border-radius: 20px;
+
+	text-align: center;
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.7em;
+	font-weight: 700;
+	color: #828282;
+	margin: 0.2em;
+}
+
+/* GRID CODE FOR THE SELLER INFORMATION */
+/*
+.seller-info {
+	display: grid;	
+	grid-template-columns: 20% 45% 35%;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-areas: 
+	    "picture stars message"
+	    "picture name message"
+	    "picture number message";
+
+	grid-column-gap: 0.8em;
+	grid-row-gap: 0.2em;
+}
+
+.seller-picture {
+	grid-area: picture;
+}
+
+.seller-stars {
+	grid-area: stars;
+}
+
+.seller-name {
+	grid-area: name;
+}
+
+.seller-number {
+	grid-area: number;
+}
+
+.seller-message {
+	grid-area: message;
+}*/
+
+.seller-contact {
+	margin: 0;
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.8em;
+}
+
+.seller-name {
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.8em;
+	font-weight: 700;
+}
+
+.seller-number {
+	margin-bottom: 0px;
+}
+
+.seller-number {
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.8em;
+}
