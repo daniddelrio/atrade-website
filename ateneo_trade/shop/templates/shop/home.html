@@ -1,20 +1,92 @@
 {% extends 'navbar.html' %}
+{% load static %}
+
+{% block title %}
+    Post Item
+{% endblock %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'shop/css/feed.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="feed-title">
+	<h5 class="text-center">Ateneo Trade</h5>
+</div>
+{% endblock %}
+
 {% block content %}
+<div class="d-flex justify-content-center">
+	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
+		<div class="category-title">
+			<p>Clothes</p>
+		</div>
+	</div>
+	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
+		<div class="category-title">
+			<p>Clothes</p>
+		</div>
+	</div>
+	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
+		<div class="category-title">
+			<p>Clothes</p>
+		</div>
+	</div>
+		<div class="category-card">
+		<div class="more-categories d-flex pt-sm-5 pl-sm-5">
+			<p>More Categories</p>
+			<img class="ml-md-2 mt-md-1 arrow-img" src="{% static 'shop/assets/arrow.svg' %}">
+		</div>
+	</div>
+</div>
     {% for item in object_list %}
-        <div><a href="item/{{item.pk}}/detail/">{{ item.name }}</a></div>
-        <div>{{ item.description }}</div>
-        <div>{{ item.price }}</div>
-        <div>{{ item.category }}</div>
-        <div>{{ item.location }}</div>
-        <div>{{ user.get_full_name }}</div>
-        <div>{{ user.profile.trade_pts }}</div>
-        <div>{{ user.profile.contact_num }}</div>
-        <div>{{ image.image }}</div>
-        {% for image in item.image_set.all %}
-            {% if image.image != "" %}
-                <img src="/media/{{ image.image }}" style="width:200px; height:200px; margin:0.2em;" alt="{{item.name}}">
-            {% endif %}
-        {% endfor %}
-        <br><br>
+    <div class="card item-card">
+    <div class="row no-gutters">
+        <div class="col-sm-6">
+            {% with item.image_set.all|first as img %}
+                <a href="item/{{item.pk}}/detail/"><img class="card-img" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+            {% endwith %}
+        </div>
+        <div class="col-sm-6">
+        <div class="card-body">
+            <div class="card-info mb-md-3">
+                <h4 class="card-title"><a href="item/{{item.pk}}/detail/">{{ item.name }}</a></h4>
+                <p class="price-text">₱ {{ item.price }}</p>
+                <div class="row location-row">
+                    <div class="col-sm-1">
+                            <img src="{% static 'shop/assets/place.svg' %}" alt="Succulents">
+                    </div>
+                    <div class="col-sm-10">
+                        <small class="text-muted">{{ item.location }}</small>
+                    </div>
+                </div>
+            </div>
+            <p class="card-text">{{ item.description }}</p>
+            <br>
+            <div class="d-flex flex-wrap">
+                <div class="item-category px-md-2">
+                    {{ item.category }}
+                </div>
+            </div>
+            <div class="card-end">
+                <span class="card-title">Seller Information</span>
+                <div class="seller-info row mt-md-1">
+                    <div class="seller-picture col-md-2">
+                        <img src="{% static 'shop/assets/riana.svg' %}" alt="Riana">
+                    </div>
+                    <div class="col-md-7 div-info">
+                        <h6 class="seller-name seller-contact">{{ user.get_full_name }}</h6>
+                        <h6 class="seller-contact">{{ user.profile.contact_num }}</h6>
+                        <h6 class="seller-contact">Rating: {{ user.profile.trade_pts }}/5</h6>
+                    </div>
+                    <div class="seller-message col-md-2">
+                        <img src="{% static 'shop/assets/seller-message.svg' %}" alt="Message Seller">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
     {% endfor %}
 {% endblock %}

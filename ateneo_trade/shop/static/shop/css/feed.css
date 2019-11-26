@@ -100,40 +100,10 @@
 	margin: 0.2em;
 }
 
-/* GRID CODE FOR THE SELLER INFORMATION */
-/*
-.seller-info {
-	display: grid;	
-	grid-template-columns: 20% 45% 35%;
-	grid-template-rows: 1fr 1fr 1fr;
-	grid-template-areas: 
-	    "picture stars message"
-	    "picture name message"
-	    "picture number message";
-
-	grid-column-gap: 0.8em;
-	grid-row-gap: 0.2em;
+.location-row {
+	display: flex;
+    align-items: center;
 }
-
-.seller-picture {
-	grid-area: picture;
-}
-
-.seller-stars {
-	grid-area: stars;
-}
-
-.seller-name {
-	grid-area: name;
-}
-
-.seller-number {
-	grid-area: number;
-}
-
-.seller-message {
-	grid-area: message;
-}*/
 
 .seller-contact {
 	margin: 0;
