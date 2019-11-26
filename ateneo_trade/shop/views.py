@@ -34,10 +34,6 @@ def update_profile(request):
 	})
 
 @login_required
-def profile(request):
-	return render(request, 'shop/profile.html')
-
-@login_required
 def post_item(request):
 	return render(request, 'shop/post_item.html')
 
@@ -97,7 +93,7 @@ class ViewItemDetail(TemplateView):
 		return render(request, self.template_name, { 'item':item })
 
 class ViewYourItems(TemplateView):
-	template_name = 'shop/view-profile.html'
+	template_name = 'shop/profile.html'
 	
 	def get( self, request ):
 		items = Item.objects.filter(user=request.user)
