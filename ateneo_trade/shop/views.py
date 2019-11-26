@@ -95,3 +95,10 @@ class ViewItemDetail(TemplateView):
 		item_id = id
 		item = Item.objects.get(id=item_id)
 		return render(request, self.template_name, { 'item':item })
+
+class ViewYourItems(TemplateView):
+	template_name = 'shop/view-profile.html'
+	
+	def get( self, request ):
+		items = Item.objects.filter(user=request.user)
+		return render(request, self.template_name, { 'items':items })
