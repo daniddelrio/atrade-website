@@ -28,10 +28,14 @@ def update_profile(request):
 	else:
 		user_form = UserForm(instance=request.user)
 		profile_form = ProfileForm(instance=request.user.profile)
-	return render(request, 'shop/profile.html', {
+	return render(request, 'shop/update_profile.html', {
 		'user_form': user_form,
 		'profile_form': profile_form
 	})
+
+@login_required
+def profile(request):
+	return render(request, 'shop/profile.html')
 
 @login_required
 def post_item(request):
