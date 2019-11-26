@@ -1,9 +1,72 @@
 {% extends 'navbar.html' %}
+{% load static %}
+
+{% block title %}
+My Profile
+{% endblock %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'shop/css/profile.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="banner-title">
+	<h5>Seller Profile</h5>
+</div>
+{% endblock %}
+
 {% block content %}
-<form method="post">
- {% csrf_token %}
- {{ user_form.as_p }}
- {{ profile_form.as_p }}
- <button type="submit">Save changes</button>
-</form>
+<div class="seller-container">
+	<div class="row">
+		<div class="seller-img col-md-2 col-sm-4">
+			<img src="{% static 'shop/assets/riana-big.svg' %}">
+		</div>
+		<div class="col">
+    		<h4 class="seller-name">Riana G. Lim</h4>
+    		<h6 class="seller-text">Rating: 4.72/5</h6>
+			<h6 class="seller-text">0917 504 4438</h6>
+			<h6 class="seller-text">fb.com/riana.g.lim</h6>
+			<h6 class="seller-text">SOSE 2021</h6>
+		</div>
+	</div>
+	<br>
+	<div class="item-buttons d-flex flex-wrap">
+		<button type="submit" class="btn btn-primary font-weight-bold item-btn">
+          Items for Sale
+		</button>
+		<a role="button" class="btn btn-light font-weight-bold item-btn ml-4 py-3">
+          Items Sold
+        </a>
+	</div>
+	<div class="items mt-5">
+		<div class="card item-card">
+			<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+			<div class="item-body mx-3 py-2">
+			    <h5 class="item-title">Succulents</h5>
+			    <h6 class="item-price">Php 100.00</h6>
+			  </div>
+		</div>
+		<div class="card item-card">
+			<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+			<div class="item-body mx-3 py-2">
+			    <h5 class="item-title">Succulents</h5>
+			    <h6 class="item-price">Php 100.00</h6>
+			  </div>
+		</div>
+		<div class="card item-card">
+			<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+			<div class="item-body mx-3 py-2">
+			    <h5 class="item-title">Succulents</h5>
+			    <h6 class="item-price">Php 100.00</h6>
+			  </div>
+		</div>
+		<div class="card item-card">
+			<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+			<div class="item-body mx-3 py-2">
+			    <h5 class="item-title">Succulents</h5>
+			    <h6 class="item-price">Php 100.00</h6>
+			  </div>
+		</div>
+	</div>
+</div>
 {% endblock %}
