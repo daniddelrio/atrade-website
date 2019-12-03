@@ -7,6 +7,19 @@
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'shop/css/item-detail.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Script for the side images -->
+  <script>
+  	$(document).ready(function(e) {
+  	  $('.item-image').click(function() {
+  	  	var currImg = $(this).find('img').attr('src');
+
+  	  	$('#big-image-id').attr('src', currImg);
+
+  	  });
+  	});
+  </script>
 {% endblock %}
 
 {% block header %}
@@ -44,7 +57,7 @@
 	</div>
 
 	<div class="big-image">
-		<img src="{% static 'shop/assets/succulent1.svg' %}" alt="Succulent 1">
+		<img src="{% static 'shop/assets/succulent1.svg' %}" id="big-image-id" alt="Succulent 1">
 	</div>
 
 	<div class="item-info">
