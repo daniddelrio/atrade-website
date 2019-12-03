@@ -105,3 +105,31 @@
 	width: 8.7rem;
 }
 
+.more-user-items {
+	width: 90%;
+}
+
+.items {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-gap: 1em;
+
+}
+
+.item-card {
+	width: 13em;
+	border-radius: 10px;
+	box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.user-item-title {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-weight: 700;
+}
+
+.user-item-price {
+	font-family: 'Barlow', sans-serif;
+	font-size: 1em;
+	font-weight: 700;
+	color: #0ACF1E;
+}
