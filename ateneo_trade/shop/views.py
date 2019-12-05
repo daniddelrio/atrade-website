@@ -41,6 +41,10 @@ def profile(request):
 def post_item(request):
 	return render(request, 'shop/post_item.html')
 
+@login_required
+def categories(request):
+	return render(request, 'shop/categories.html')
+
 def Logout(request):
 	logout(request)
 	return HttpResponseRedirect('/')
