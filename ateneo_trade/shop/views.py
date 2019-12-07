@@ -89,6 +89,15 @@ class Home(ListView):
 	model = Item
 	ordering = ['-id']
 
+	def post( self, request ):
+		query = Q()
+		for item in request.POST.items():
+			if(item[0] =='csrfmiddlewaretoken'):
+				continue
+			query.add(Q(category=item[1]),Q.OR)
+		items = Item.objects.filter(query).order_by('-id')
+		return render( request, Categories.template_name, { 'items':items, 'data':request.POST.items() })
+
 class ViewItemDetail(TemplateView):
 	template_name = 'shop/item.html'
 
@@ -114,6 +123,8 @@ class Categories(TemplateView):
 	def post( self, request ):
 		query = Q()
 		for item in request.POST.items():
+			if(item[0] =='csrfmiddlewaretoken'):
+				continue
 			query.add(Q(category=item[1]),Q.OR)
 		items = Item.objects.filter(query).order_by('-id')
 		return render( request, self.template_name, { 'items':items, 'data':request.POST.items() })

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Post Item
+    Ateneo Trade
 {% endblock %}
 
 {% block links %}
@@ -19,22 +19,58 @@
 <div class="d-flex justify-content-center">
 	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
 		<div class="category-title">
-			<p>Clothes</p>
+			<form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="1" value="Clothes" checked>
+                <button style="background-color: white;
+	            color: #333333;
+                border: 0;
+                padding: 0;
+                font-family: 'Alegreya Sans', sans-serif;
+                font-size: 1rem;
+                font-weight: 700;" type="submit">
+                    Clothes
+                </button>
+            </form>
 		</div>
 	</div>
 	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
 		<div class="category-title">
-			<p>Clothes</p>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="2" value="Academic Books" checked>
+                <button style="background-color: white;
+	            color: #333333;
+                border: 0;
+                padding: 0;
+                font-family: 'Alegreya Sans', sans-serif;
+                font-size: 1rem;
+                font-weight: 700;" type="submit">
+                    Academic Books
+                </button>
+            </form>
 		</div>
 	</div>
 	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
 		<div class="category-title">
-			<p>Clothes</p>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="3" value="Non-academic Books" checked>
+                <button style="background-color: white;
+	            color: #333333;
+                border: 0;
+                padding: 0;
+                font-family: 'Alegreya Sans', sans-serif;
+                font-size: 1rem;
+                font-weight: 700;" type="submit">
+                    Non-academic Books
+                </button>
+            </form>
 		</div>
 	</div>
 		<div class="category-card">
 		<div class="more-categories d-flex pt-sm-5 pl-sm-5">
-			<p>More Categories</p>
+			<p><a href="{% url 'categories' %}" style="color: #333333;">More Categories</a></p>
 			<img class="ml-md-2 mt-md-1 arrow-img" src="{% static 'shop/assets/arrow.svg' %}">
 		</div>
 	</div>
