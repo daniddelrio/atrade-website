@@ -1,0 +1,99 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block title %}
+My Profile
+{% endblock %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'shop/css/categories.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="banner-title">
+	<h5>Categories</h5>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="seller-container">
+	<div class="sort-form align-items-center offset-sm-7 d-flex justify-content-end">
+		<label for="item-price" class="col-lg-3 col-form-label">Sort By</label>
+		<select id="item-price" class="custom-select custom-select-sm">
+		  <option selected>Price (Low to High)</option>
+		  <option value="1">Oldest to Newest</option>
+		  <option value="2">Newest to Oldest</option>
+		</select>
+	</div>
+	<div class="body row">
+		<div class="col-sm-3 categories py-sm-4 px-sm-4">
+			<form method="post">
+				{% csrf_token %}
+				<h5>Categories</h5>
+				<div class="custom-control custom-checkbox mt-sm-3">
+				  <input type="checkbox" class="custom-control-input" id="customCheck1">
+				  <label class="custom-control-label" for="customCheck1">Clothes</label>
+				</div>
+				<div class="custom-control custom-checkbox mt-sm-3">
+				  <input type="checkbox" class="custom-control-input" id="customCheck2">
+				  <label class="custom-control-label" for="customCheck2">Shoes</label>
+				</div>
+				<div class="custom-control custom-checkbox mt-sm-3">
+				  <input type="checkbox" class="custom-control-input" id="customCheck3">
+				  <label class="custom-control-label" for="customCheck3">School Supplies</label>
+				</div>
+				<div class="custom-control custom-checkbox mt-sm-3">
+				  <input type="checkbox" class="custom-control-input" id="customCheck4">
+				  <label class="custom-control-label" for="customCheck4">Non-academic Books</label>
+				</div>
+				<div class="custom-control custom-checkbox mt-sm-3">
+				  <input type="checkbox" class="custom-control-input" id="customCheck5">
+				  <label class="custom-control-label" for="customCheck5">Academic Books</label>
+				</div>
+				<div class="text-center mt-sm-3">
+					<button type="submit" class="btn btn-primary font-weight-bold item-btn">
+		              Filter
+					</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-sm-8 items mt-4 ml-sm-5">
+			<div class="card item-card">
+				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+				<div class="item-body mx-3 py-2">
+				    <h5 class="item-title">Succulents</h5>
+				    <h6 class="item-price">Php 100.00</h6>
+				  </div>
+			</div>
+			<div class="card item-card">
+				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+				<div class="item-body mx-3 py-2">
+				    <h5 class="item-title">Succulents</h5>
+				    <h6 class="item-price">Php 100.00</h6>
+				  </div>
+			</div>
+			<div class="card item-card">
+				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+				<div class="item-body mx-3 py-2">
+				    <h5 class="item-title">Succulents</h5>
+				    <h6 class="item-price">Php 100.00</h6>
+				  </div>
+			</div>
+			<div class="card item-card">
+				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+				<div class="item-body mx-3 py-2">
+				    <h5 class="item-title">Succulents</h5>
+				    <h6 class="item-price">Php 100.00</h6>
+				  </div>
+			</div>
+			<div class="card item-card">
+				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+				<div class="item-body mx-3 py-2">
+				    <h5 class="item-title">Succulents</h5>
+				    <h6 class="item-price">Php 100.00</h6>
+				  </div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

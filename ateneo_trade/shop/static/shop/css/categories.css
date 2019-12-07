@@ -1,0 +1,59 @@
+.seller-container {
+	width: 80%;
+	margin: 2em 6em 3em 6em;
+}
+
+.categories {
+	background: #F2F2F2;
+	border-radius: 10px;
+	font-size: 0.9em;
+	height: 90%;
+}
+
+.categories h5 {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-weight: 700;
+}
+
+.custom-control-label {
+	padding-top: 1px;
+}
+
+.item-btn {
+	border-radius: 10px;
+	width: 6rem;
+	font-size: 0.9em;
+}
+
+.custom-select {
+	border: 1px solid #828282;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+.items {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+	grid-gap: 2em;
+
+}
+
+.item-card {
+	width: 11em;
+	border-radius: 10px;
+	box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.item-title {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-weight: 700;
+	font-size: 1.2em;
+	margin: 0;
+}
+
+.item-price {
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.9em;
+	font-weight: 700;
+	color: #0ACF1E;
+}
