@@ -5,15 +5,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.db import transaction
+from django.db.models import Q
 from .models import Profile, Item, Image
 from .forms import UserForm, ProfileForm, ItemForm, ImageForm
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.forms import formset_factory
-
-@login_required
-def Home(request):
-	return render(request, 'shop/home.html')
+from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
 
 @login_required
 @transaction.atomic
@@ -30,11 +29,16 @@ def update_profile(request):
 	else:
 		user_form = UserForm(instance=request.user)
 		profile_form = ProfileForm(instance=request.user.profile)
-	return render(request, 'shop/profile.html', {
+	return render(request, 'shop/update_profile.html', {
 		'user_form': user_form,
 		'profile_form': profile_form
 	})
 
+@login_required
+def profile(request):
+	return render(request, 'shop/profile.html')
+
+@login_required
 def post_item(request):
 	return render(request, 'shop/post_item.html')
 
@@ -79,3 +83,49 @@ def post_item(request):
 		formset = ImageFormSet()
 	
 	return render(request, 'shop/post_item.html', {'item_form': item_form, 'formset': formset})
+
+class Home(ListView):
+	template_name = 'shop/home.html'
+	model = Item
+	ordering = ['-id']
+
+	def post( self, request ):
+		query = Q()
+		for item in request.POST.items():
+			if(item[0] =='csrfmiddlewaretoken'):
+				continue
+			query.add(Q(category=item[1]),Q.OR)
+		items = Item.objects.filter(query).order_by('-id')
+		return render( request, Categories.template_name, { 'items':items, 'data':request.POST.items() })
+
+class ViewItemDetail(TemplateView):
+	template_name = 'shop/item.html'
+
+	def get( self, request, id ):
+		item_id = id
+		item = Item.objects.get(id=item_id)
+		return render(request, self.template_name, { 'item':item })
+
+class ViewYourItems(TemplateView):
+	template_name = 'shop/view-profile.html'
+	
+	def get( self, request ):
+		items = Item.objects.filter(user=request.user)
+		return render(request, self.template_name, { 'items':items })
+
+class Categories(TemplateView):
+	template_name = 'shop/categories.html'
+
+	def get( self, request ):
+		items = Item.objects.all().order_by('-id')
+		return render(request, self.template_name, { 'items':items })
+	
+	def post( self, request ):
+		query = Q()
+		for item in request.POST.items():
+			if(item[0] =='csrfmiddlewaretoken'):
+				continue
+			query.add(Q(category=item[1]),Q.OR)
+		items = Item.objects.filter(query).order_by('-id')
+		return render( request, self.template_name, { 'items':items, 'data':request.POST.items() })
+		
