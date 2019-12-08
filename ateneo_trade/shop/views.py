@@ -38,10 +38,6 @@ def update_profile(request):
 def profile(request):
 	return render(request, 'shop/profile.html')
 
-@login_required
-def post_item(request):
-	return render(request, 'shop/post_item.html')
-
 def Logout(request):
 	logout(request)
 	return HttpResponseRedirect('/')
