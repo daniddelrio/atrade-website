@@ -35,6 +35,10 @@ def update_profile(request):
 	})
 
 @login_required
+def profile(request):
+	return render(request, 'shop/profile.html')
+
+@login_required
 def post_item(request):
 	return render(request, 'shop/post_item.html')
 
@@ -106,7 +110,7 @@ class ViewYourItems(TemplateView):
 	template_name = 'shop/profile.html'
 	
 	def get( self, request ):
-		items = Item.objects.filter(user=request.user)
+		items = Item.objects.filter(user=request.user).order_by('-id')
 		return render(request, self.template_name, { 'items':items })
 
 class Categories(TemplateView):
