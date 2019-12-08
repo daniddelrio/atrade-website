@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-My Profile
+Categories
 {% endblock %}
 
 {% block links %}
@@ -31,23 +31,23 @@ My Profile
 				{% csrf_token %}
 				<h5>Categories</h5>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck1">
+				  <input type="checkbox" class="custom-control-input" id="customCheck1" name="1" value="Clothes">
 				  <label class="custom-control-label" for="customCheck1">Clothes</label>
 				</div>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck2">
+				  <input type="checkbox" class="custom-control-input" id="customCheck2" name="2" value="Shoes">
 				  <label class="custom-control-label" for="customCheck2">Shoes</label>
 				</div>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck3">
+				  <input type="checkbox" class="custom-control-input" id="customCheck3" name="3" value="School Supplies">
 				  <label class="custom-control-label" for="customCheck3">School Supplies</label>
 				</div>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck4">
+				  <input type="checkbox" class="custom-control-input" id="customCheck4" name="4" value="Non-academic Books">
 				  <label class="custom-control-label" for="customCheck4">Non-academic Books</label>
 				</div>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck5">
+				  <input type="checkbox" class="custom-control-input" id="customCheck5" name="5" value="Academic Books">
 				  <label class="custom-control-label" for="customCheck5">Academic Books</label>
 				</div>
 				<div class="text-center mt-sm-3">
@@ -58,41 +58,17 @@ My Profile
 			</form>
 		</div>
 		<div class="col-sm-8 items mt-4 ml-sm-5">
+			{% for item in items %}
 			<div class="card item-card">
-				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
+				{% with item.image_set.all|first as img %}
+					<a href="item/{{item.pk}}/detail/"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+				{% endwith %}
 				<div class="item-body mx-3 py-2">
-				    <h5 class="item-title">Succulents</h5>
-				    <h6 class="item-price">Php 100.00</h6>
-				  </div>
+					<h5 class="item-title">{{ item.name }}</h5>
+					<h6 class="item-price">₱ {{ item.price }}</h6>
+					</div>
 			</div>
-			<div class="card item-card">
-				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
-				<div class="item-body mx-3 py-2">
-				    <h5 class="item-title">Succulents</h5>
-				    <h6 class="item-price">Php 100.00</h6>
-				  </div>
-			</div>
-			<div class="card item-card">
-				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
-				<div class="item-body mx-3 py-2">
-				    <h5 class="item-title">Succulents</h5>
-				    <h6 class="item-price">Php 100.00</h6>
-				  </div>
-			</div>
-			<div class="card item-card">
-				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
-				<div class="item-body mx-3 py-2">
-				    <h5 class="item-title">Succulents</h5>
-				    <h6 class="item-price">Php 100.00</h6>
-				  </div>
-			</div>
-			<div class="card item-card">
-				<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
-				<div class="item-body mx-3 py-2">
-				    <h5 class="item-title">Succulents</h5>
-				    <h6 class="item-price">Php 100.00</h6>
-				  </div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
 </div>

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.db import transaction
+from django.db.models import Q
 from .models import Profile, Item, Image
 from .forms import UserForm, ProfileForm, ItemForm, ImageForm
 from django.contrib import messages
@@ -40,10 +41,6 @@ def profile(request):
 @login_required
 def post_item(request):
 	return render(request, 'shop/post_item.html')
-
-@login_required
-def categories(request):
-	return render(request, 'shop/categories.html')
 
 def Logout(request):
 	logout(request)
@@ -92,6 +89,15 @@ class Home(ListView):
 	model = Item
 	ordering = ['-id']
 
+	def post( self, request ):
+		query = Q()
+		for item in request.POST.items():
+			if(item[0] =='csrfmiddlewaretoken'):
+				continue
+			query.add(Q(category=item[1]),Q.OR)
+		items = Item.objects.filter(query).order_by('-id')
+		return render( request, Categories.template_name, { 'items':items, 'data':request.POST.items() })
+
 class ViewItemDetail(TemplateView):
 	template_name = 'shop/item.html'
 
@@ -106,3 +112,20 @@ class ViewYourItems(TemplateView):
 	def get( self, request ):
 		items = Item.objects.filter(user=request.user)
 		return render(request, self.template_name, { 'items':items })
+
+class Categories(TemplateView):
+	template_name = 'shop/categories.html'
+
+	def get( self, request ):
+		items = Item.objects.all().order_by('-id')
+		return render(request, self.template_name, { 'items':items })
+	
+	def post( self, request ):
+		query = Q()
+		for item in request.POST.items():
+			if(item[0] =='csrfmiddlewaretoken'):
+				continue
+			query.add(Q(category=item[1]),Q.OR)
+		items = Item.objects.filter(query).order_by('-id')
+		return render( request, self.template_name, { 'items':items, 'data':request.POST.items() })
+		
