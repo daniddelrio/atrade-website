@@ -91,7 +91,7 @@ class Home(ListView):
 
 		print(name)
 		if (name != None ):
-			object_list = self.model.objects.filter(name__icontains = name)
+			object_list = self.model.objects.filter(Q(name__icontains = name)|Q(category__icontains = name)).order_by('-id')
 		else:
 			object_list = self.model.objects.all()
 
