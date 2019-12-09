@@ -23,7 +23,7 @@ class Profile(models.Model):
 	major = models.CharField(blank=True, default=None, help_text="Please use the following format: BS CS", max_length=10, null=True)
 	major_is_visible = models.BooleanField(default=False)
 	trade_pts = models.IntegerField(default=0)
-	contact_num = models.CharField(default="", help_text="Please use the following format: +639123456789", max_length=11)
+	contact_num = models.CharField(default="", help_text="Please use the following format: +639123456789", max_length=15)
 	fb_link = models.CharField(default="", help_text="Please use the following format: facebook.com/your.profile", max_length=40)
 
 class DisplayPicture(models.Model):
