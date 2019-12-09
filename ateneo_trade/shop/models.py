@@ -17,9 +17,9 @@ class Profile(models.Model):
 	grad_year = models.IntegerField(blank=True, default=None, null=True, validators=[MinValueValidator(1859), MaxValueValidator(9999)])
 	major = models.CharField(blank=True, default=None, help_text="Please use the following format: BS CS", max_length=10, null=True)
 	trade_pts = models.IntegerField(default=0)
-	contact_num = models.CharField(default="", help_text="Please use the following format: +639123456789", max_length=11)
+	contact_num = models.CharField(default="", help_text="Please use the following format: +639123456789", max_length=15)
 	fb_link = models.CharField(default="", help_text="Please use the following format: facebook.com/your.profile", max_length=40)
-	
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:
@@ -42,7 +42,7 @@ class Item(models.Model):
 	description = models.TextField(default="")
 	category = models.CharField(choices=CATEGORIES, default="", max_length=100)
 	location = models.CharField(default="Ateneo de Manila University", max_length=200)
-	
+
 class Image(models.Model):
 	item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='images/%Y/%m/%d/')
