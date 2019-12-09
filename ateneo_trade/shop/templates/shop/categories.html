@@ -7,10 +7,11 @@ Categories
 
 {% block links %}
 	<link rel="stylesheet" href="{% static 'shop/css/categories.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(e) {
 			{% for cat in category_list %}
-				$('#'.concat(cat)).attr('checked', true);
+				$('#'.concat({{cat}})).attr('checked', true);
 			{% endfor %}
 		});
 	</script>
