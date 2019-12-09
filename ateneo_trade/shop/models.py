@@ -45,7 +45,8 @@ class Item(models.Model):
 	description = models.TextField(default="")
 	category = models.CharField(choices=CATEGORIES, default="", max_length=100)
 	location = models.CharField(default="Ateneo de Manila University", max_length=200)
-	
+	is_sold = models.BooleanField(default=False)
+
 class Image(models.Model):
 	item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='images/%Y/%m/%d/')
