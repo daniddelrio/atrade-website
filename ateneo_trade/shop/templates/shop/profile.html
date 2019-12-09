@@ -19,7 +19,7 @@ My Profile
 <div class="seller-container">
 	<div class="row">
 		<div class="seller-img col-md-2 col-sm-4">
-			<img src="{% static 'shop/assets/riana-big.svg' %}">
+			<img src="/media/{{ user.profile.display_pic }}">
 		</div>
 		<div class="col">
     		<h4 class="seller-name">{{ user.get_full_name }}</h4>
