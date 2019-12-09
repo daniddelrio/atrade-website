@@ -22,11 +22,11 @@ Seller Profile
 			<img src="{% static 'shop/assets/riana-big.svg' %}">
 		</div>
 		<div class="col">
-    		<h4 class="seller-name">{{ user.get_full_name }}</h4>
-    		<h6 class="seller-text">Rating: {{ user.profile.trade_pts }}/5</h6>
-			<h6 class="seller-text">{{ user.profile.contact_num }}</h6>
-			<h6 class="seller-text">{{ user.profile.fb_link }}</h6>
-			<h6 class="seller-text">{{ user.profile.school }} {{ user.profile.grad_year }}</h6>
+			<h4 class="seller-name">{{ items.user.get_full_name }}</h4>
+			<h6 class="seller-text">Rating: {{ items.user.profile.trade_pts }}/5</h6>
+			<h6 class="seller-text">{{ items.user.profile.contact_num }}</h6>
+			<h6 class="seller-text">{{ items.user.profile.fb_link }}</h6>
+			<h6 class="seller-text">{{ items.user.profile.school }} {{ items.user.profile.grad_year }}</h6>
 		</div>
 	</div>
 	<br>
@@ -34,6 +34,9 @@ Seller Profile
 		<button type="submit" class="btn btn-primary font-weight-bold item-btn">
           Items for Sale
 		</button>
+		<a href="http://www.{{user.profile.fb_link}}">
+			<img class="message-btn" src="{% static 'shop/assets/seller-message.svg' %}" alt="Message Seller">
+		</a>
 	</div>
 	<div class="items mt-5">
 		{% for item in items %}
