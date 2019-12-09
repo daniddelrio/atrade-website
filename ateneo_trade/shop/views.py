@@ -131,3 +131,10 @@ class Categories(TemplateView):
 			items = Item.objects.filter(query).order_by('-id')
 		print(category_list)
 		return render( request, self.template_name, { 'items':items, 'category_list':category_list })
+
+class SellerProfile(TemplateView):
+	template_name = 'shop/seller.html'
+
+	def get( self, request, seller ):
+		items = Item.objects.filter(user=seller).order_by('-id')
+		return render(request, self.template_name, {'items':items})

@@ -1,0 +1,52 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block title %}
+Seller Profile
+{% endblock %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'shop/css/profile.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="banner-title">
+	<h5>Seller Profile</h5>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="seller-container">
+	<div class="row">
+		<div class="seller-img col-md-2 col-sm-4">
+			<img src="{% static 'shop/assets/riana-big.svg' %}">
+		</div>
+		<div class="col">
+    		<h4 class="seller-name">{{ user.get_full_name }}</h4>
+    		<h6 class="seller-text">Rating: {{ user.profile.trade_pts }}/5</h6>
+			<h6 class="seller-text">{{ user.profile.contact_num }}</h6>
+			<h6 class="seller-text">{{ user.profile.fb_link }}</h6>
+			<h6 class="seller-text">{{ user.profile.school }} {{ user.profile.grad_year }}</h6>
+		</div>
+	</div>
+	<br>
+	<div class="item-buttons d-flex flex-wrap">
+		<button type="submit" class="btn btn-primary font-weight-bold item-btn">
+          Items for Sale
+		</button>
+	</div>
+	<div class="items mt-5">
+		{% for item in items %}
+			<div class="card item-card">
+				{% with item.image_set.all|first as img %}
+					<a href="{% url 'view-item-detail' item.pk %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+				{% endwith %}
+				<div class="item-body mx-3 py-2">
+					<a href="{% url 'view-item-detail' item.pk %}"><h5 class="item-title">{{ item.name }}</h5></a>
+					<h6 class="item-price">Php {{ item.price }}</h6>
+				  </div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

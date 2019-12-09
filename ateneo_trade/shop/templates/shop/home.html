@@ -105,7 +105,7 @@
                                 <img src="{% static 'shop/assets/riana.svg' %}" alt="Riana">
                             </div>
                             <div class="col-md-7 div-info">
-                                <h6 class="seller-name seller-contact">{{ item.user.get_full_name }}</h6>
+                                <a href="{% url 'seller-profile' item.user.pk %}"><h6 class="seller-name seller-contact">{{ item.user.get_full_name }}</h6></a>
                                 <h6 class="seller-contact">{{ item.user.profile.contact_num }}</h6>
                                 <h6 class="seller-contact">Rating: {{ item.user.profile.trade_pts }}/5</h6>
                             </div>
