@@ -25,14 +25,22 @@ Categories
 
 {% block content %}
 <div class="seller-container">
-	<div class="sort-form align-items-center offset-sm-7 d-flex justify-content-end">
-		<label for="item-price" class="col-lg-3 col-form-label">Sort By</label>
-		<select id="item-price" class="custom-select custom-select-sm">
-		  <option selected>Price (Low to High)</option>
-		  <option value="1">Oldest to Newest</option>
-		  <option value="2">Newest to Oldest</option>
-		</select>
+		<form method="POST">
+	<div class="sort-form align-items-center offset-sm-5 d-flex justify-content-end">
+			{% csrf_token %}
+			<label for="item-price" class="col-lg-3 col-form-label">Sort By</label>
+			<select id="item-price" class="col-lg-5 custom-select custom-select-sm">
+			  <option selected>Price (Low to High)</option>
+			  <option value="1">Oldest to Newest</option>
+			  <option value="2">Newest to Oldest</option>
+			</select>
+			<div class="text-center offset-lg-1">
+				<button type="submit" class="btn btn-primary font-weight-bold item-btn">
+	              Sort
+				</button>
+			</div>
 	</div>
+		</form>
 	<div class="body row">
 		<div class="col-sm-3 categories py-sm-4 px-sm-4">
 			<form method="GET">
