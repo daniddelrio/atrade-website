@@ -19,8 +19,7 @@
 <div class="d-flex flex-wrap justify-content-center">
 	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
 		<div class="category-title">
-			<form method="POST">
-                {% csrf_token %}
+			<form method="GET" action="{% url 'categories' %}">
                 <input type="hidden" name="1" value="Clothes" checked>
                 <button style="background-color: white;
 	            color: #333333;
@@ -35,8 +34,7 @@
 	</div>
 	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
 		<div class="category-title">
-            <form method="POST">
-                {% csrf_token %}
+            <form method="GET" action="{% url 'categories' %}">
                 <input type="hidden" name="2" value="Academic Books" checked>
                 <button style="background-color: white;
 	            color: #333333;
@@ -51,8 +49,7 @@
 	</div>
 	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
 		<div class="category-title">
-            <form method="POST">
-                {% csrf_token %}
+            <form method="GET" action="{% url 'categories' %}">
                 <input type="hidden" name="3" value="Non-academic Books" checked>
                 <button style="background-color: white;
 	            color: #333333;
