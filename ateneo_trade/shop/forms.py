@@ -12,7 +12,7 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		fields = ('school','major','grad_year','contact_num','fb_link')
+		fields = ('school','school_is_visible','major','major_is_visible','grad_year','gradyr_is_visible','contact_num','fb_link')
 
 class ItemForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
