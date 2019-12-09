@@ -68,10 +68,10 @@ Categories
 			{% for item in items %}
 			<div class="card item-card">
 				{% with item.image_set.all|first as img %}
-					<a href="item/{{item.pk}}/detail/"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+					<a href="{% url 'view-item-detail' item.pk %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
 				{% endwith %}
 				<div class="item-body mx-3 py-2">
-					<h5 class="item-title">{{ item.name }}</h5>
+					<a href="{% url 'view-item-detail' item.pk %}"><h5 class="item-title">{{ item.name }}</h5></a>
 					<h6 class="item-price">₱ {{ item.price }}</h6>
 					</div>
 			</div>
