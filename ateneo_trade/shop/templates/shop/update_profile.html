@@ -1,9 +1,112 @@
 {% extends 'navbar.html' %}
+{% load static %}
+
+{% block title %}
+    Ateneo Trade
+{% endblock %}
+
+{% block links %}
+  <link rel="stylesheet" href="{% static 'shop/css/feed.css' %}">
+{% endblock %}
+
+{% block header %}
+<div class="banner-title">
+  <h5>Seller Profile</h5>
+</div>
+{% endblock %}
+
 {% block content %}
-<form method="post">
- {% csrf_token %}
- {{ user_form.as_p }}
- {{ profile_form.as_p }}
- <button type="submit">Save changes</button>
-</form>
+<div class="d-flex justify-content-center">
+  <div class="post-form">
+    <div class="form-row mb-lg-1">
+      <img src="{% static 'shop/assets/riana.svg' %}" class="rounded-circle" style="height:200px; margin-left:15px; padding: 10px;" />
+
+      <div class="form-column mt-sm-4 ml-sm-2">
+        <div class="form-row">
+          <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px">Name:</label>
+          <div class="col-lg-7">
+            <input type="text" class="form-control" id="Name" placeholder="Name">
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px" >Contact Number:</label>
+          <div class="col-lg-7">
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="0917XXXXX">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="facebook-name" class="col-md-5 col-form-label" style="padding:10px">Facebook Name: </label>
+          <div class="col-lg-7">
+            <input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="facebook-name">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row mb-lg-3">
+      <div class="col-md-9">
+        <label for="facebook-name" class="col-form-label">Additonal Details:</label>
+      </div>
+      <div class="col-md-3">
+          <label for="Visibility" class="col-form-label">Visibility</label>
+      </div>
+    </div>
+
+    <div class="form-row mb-lg-1">
+      <label for="email" class="col-md-2 col-form-label">Email: </label>
+      <div class="col-md-6">
+        <input type="email" class="form-control form-control-sm py-lg-3 px-lg-3" id="email">
+      </div>
+
+      <div class="col-md-1 offset-md-1">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="email-switch">
+          <label class="custom-control-label" for="email-switch"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row mb-lg-1">
+      <label for="school" class="col-md-2 col-form-label">School: </label>
+      <div class="col-md-6">
+        <input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="school">
+      </div>
+
+      <div class="col-md-1 offset-md-1">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="school-switch">
+          <label class="custom-control-label" for="school-switch"></label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-row mb-lg-1">
+      <label for="graduation-year" class="col-md-2 col-form-label">Graduation Year: </label>
+      <div class="col-md-6">
+        <input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="graduation-year">
+      </div>
+
+      <div class="col-md-1 offset-md-1">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="graduation-year-switch">
+          <label class="custom-control-label" for="graduation-year-switch"></label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-row mb-lg-4">
+      <div class="col-md-3 offset-md-6">
+        <button type="button" class="btn btn-primary" style="padding:10px">Save Changes</button>
+      </div>
+      <div class="col-md-3">
+        <button type="button" class="btn btn-secondary" style="padding:10px">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

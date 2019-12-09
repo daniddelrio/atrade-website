@@ -1,0 +1,135 @@
+.seller-info {
+	width: 45%;
+}
+
+.seller-contact {
+	margin: 0;
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.9em;
+}
+
+.seller-name {
+	font-family: 'Barlow', sans-serif;
+	font-size: 1.0em;
+	font-weight: 700;
+}
+
+.item-image:nth-child(1) {
+	grid-area: image1;
+}
+
+.item-image:nth-child(2) {
+	grid-area: image2;
+}
+
+.item-image:nth-child(3) {
+	grid-area: image3;
+}
+
+.item-image:nth-child(4) {
+	grid-area: image4;
+}
+
+.item-image:nth-child(5) {
+	grid-area: image5;
+}
+
+.big-image {
+	grid-area: big-image;
+	max-width: 30em;
+	height: auto;
+}
+
+.big-image img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.item-info {
+	margin-left: 2em;
+	grid-area: info;
+}
+
+.item-name {
+	font-family: 'Barlow', sans-serif;
+	font-weight: 700;
+}
+
+.item-price {
+	color: #0ACF1E;
+}
+
+.item-container {
+	display: grid;
+	grid-template-columns: auto 2fr 2fr;
+	grid-template-rows: repeat(5, auto);
+	grid-template-areas:
+		"image1 big-image info"
+		"image2 big-image info"
+		"image3 big-image info"
+		"image4 big-image info"
+		"image5 big-image info"
+		". big-image info";
+	grid-gap: 7px 8px;
+}
+
+.item-image {
+	width: 4.5em;
+	max-height: 6em;
+	object-fit: cover;
+}
+
+.img-item {
+	width: 100%;
+	height: auto;
+}
+
+.item-category {
+	height: 1.4rem;
+	max-width: 100%;
+	background-color: #E0E0E0;
+	border-radius: 20px;
+	padding-top: 2px;
+
+	text-align: center;
+	font-family: 'Barlow', sans-serif;
+	font-size: 0.7em;
+	font-weight: 700;
+	color: #828282;
+	margin: 0.2em;
+}
+
+.item-btn {
+	color: #FFFFFF;
+	border-radius: 10px;
+	width: 8.7rem;
+}
+
+.more-user-items {
+	width: 90%;
+}
+
+.items {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-gap: 1em;
+
+}
+
+.item-card {
+	width: 13em;
+	border-radius: 10px;
+	box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.user-item-title {
+	font-family: 'Alegreya Sans', sans-serif;
+	font-weight: 700;
+}
+
+.user-item-price {
+	font-family: 'Barlow', sans-serif;
+	font-size: 1em;
+	font-weight: 700;
+	color: #0ACF1E;
+}

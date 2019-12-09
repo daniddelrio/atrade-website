@@ -49,8 +49,8 @@ class Image(models.Model):
 	image = models.ImageField(upload_to='images/%Y/%m/%d/')
 	
 class Rating(models.Model):
-	rater = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE)
-	ratee = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE)
+	rater = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE, related_name='user_rater')
+	ratee = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE, related_name='user_ratee')
 	rating_number = models.IntegerField(blank=True, null=True);
 	
 class Transaction(models.Model):
@@ -59,8 +59,8 @@ class Transaction(models.Model):
 		('credit_card', 'Credit Card'),
 		('bank_transfer', 'Bank Transfer'),
 	]
-	buyer = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE)
-	seller = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE)
+	buyer = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE, related_name='user_buyer')
+	seller = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE, related_name='user_seller')
 	item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
 	posting_date = models.CharField(default="", help_text="Please use the following format: 12/31/1999 11:00 A.M.", max_length=25);
 	transaction_date = models.CharField(default="", help_text="Please use the following format: 12/31/1999 11:00 A.M.", max_length=25);
