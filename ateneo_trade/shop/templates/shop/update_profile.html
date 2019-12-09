@@ -1,126 +1,112 @@
 {% extends 'navbar.html' %}
-{% block content %}
-<form method="post">
- {% csrf_token %}
- {{ user_form.as_p }}
- {{ profile_form.as_p }}
- <button type="submit">Save changes</button>
-</form>
+{% load static %}
+
+{% block title %}
+    Ateneo Trade
 {% endblock %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container">
-      <div class="post-form">
-        <div class="form-row mb-lg-1">
-          	<img src="Jaime.jpg" class="rounded-circle" style="height:200px; margin-left:15px; padding: 10px;" />
 
-            <div class="form-column">
-              <div class="form-row">
-                <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px">Name:</label>
-                <div class="col-lg-7">
-                  <input type="text" class="form-control" id="Name" placeholder="Name">
-                </div>
+{% block links %}
+  <link rel="stylesheet" href="{% static 'shop/css/feed.css' %}">
+{% endblock %}
 
-              </div>
+{% block header %}
+<div class="banner-title">
+  <h5>Seller Profile</h5>
+</div>
+{% endblock %}
 
-              <div class="form-row">
-                <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px" >Contact Number:</label>
-                <div class="col-lg-7">
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="0917XXXXX">
-                </div>
-              </div>
-            </div>
-            </div>
+{% block content %}
+<div class="d-flex justify-content-center">
+  <div class="post-form">
+    <div class="form-row mb-lg-1">
+      <img src="{% static 'shop/assets/riana.svg' %}" class="rounded-circle" style="height:200px; margin-left:15px; padding: 10px;" />
 
-            <div class="form-row mb-lg-3">
-              <div class="col-md-6">
-                <label for="facebook-name" class="col-form-label">Additonal Details:</label>
-              </div>
-              <div class="col-md-6">
-                  <label for="Visibility" class="col-form-label">Visibility</label>
-                </div>
-              </div>
-        		</div>
-
-
-            <div class="form-row mb-lg-1">
-        			<label for="facebook-name" class="col-md-2 col-form-label">Facebook Name: </label>
-        			<div class="col-md-3">
-        				<input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="facebook-name">
-        			</div>
-
-              <div class="col-md-1 offset-md-1">
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="facebook-name-switch">
-                  <label class="custom-control-label" for="facebook-name-switch"></label>
-                </div>
-              </div>
-        		</div>
-
-            <div class="form-row mb-lg-1">
-        			<label for="email" class="col-md-2 col-form-label">Email: </label>
-        			<div class="col-md-3">
-        				<input type="email" class="form-control form-control-sm py-lg-3 px-lg-3" id="email">
-        			</div>
-
-              <div class="col-md-1 offset-md-1">
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="email-switch">
-                  <label class="custom-control-label" for="email-switch"></label>
-                </div>
-              </div>
-        		</div>
-
-            <div class="form-row mb-lg-1">
-        			<label for="school" class="col-md-2 col-form-label">School: </label>
-        			<div class="col-md-3">
-        				<input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="school">
-        			</div>
-
-              <div class="col-md-1 offset-md-1">
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="school-switch">
-                  <label class="custom-control-label" for="school-switch"></label>
-                </div>
-              </div>
-        		</div>
-
-
-            <div class="form-row mb-lg-1">
-        			<label for="graduation-year" class="col-md-2 col-form-label">Graduation Year: </label>
-        			<div class="col-md-3">
-        				<input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="graduation-year">
-        			</div>
-
-              <div class="col-md-1 offset-md-1">
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="graduation-year-switch">
-                  <label class="custom-control-label" for="graduation-year-switch"></label>
-                </div>
-              </div>
-        		</div>
-
-
-            <div class="form-row mb-lg-4">
-              <div class="col-md-3 offset-md-4">
-                <button type="button" class="btn btn-primary" style="padding:10px">Save Changes</button>
-                <button type="button" class="btn btn-secondary" style="padding:10px">Cancel</button>
-              </div>
-        		</div>
-
-
+      <div class="form-column mt-sm-4 ml-sm-2">
+        <div class="form-row">
+          <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px">Name:</label>
+          <div class="col-lg-7">
+            <input type="text" class="form-control" id="Name" placeholder="Name">
+          </div>
 
         </div>
+
+        <div class="form-row">
+          <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px" >Contact Number:</label>
+          <div class="col-lg-7">
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="0917XXXXX">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="facebook-name" class="col-md-5 col-form-label" style="padding:10px">Facebook Name: </label>
+          <div class="col-lg-7">
+            <input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="facebook-name">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row mb-lg-3">
+      <div class="col-md-9">
+        <label for="facebook-name" class="col-form-label">Additonal Details:</label>
+      </div>
+      <div class="col-md-3">
+          <label for="Visibility" class="col-form-label">Visibility</label>
+      </div>
+    </div>
+
+    <div class="form-row mb-lg-1">
+      <label for="email" class="col-md-2 col-form-label">Email: </label>
+      <div class="col-md-6">
+        <input type="email" class="form-control form-control-sm py-lg-3 px-lg-3" id="email">
+      </div>
+
+      <div class="col-md-1 offset-md-1">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="email-switch">
+          <label class="custom-control-label" for="email-switch"></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row mb-lg-1">
+      <label for="school" class="col-md-2 col-form-label">School: </label>
+      <div class="col-md-6">
+        <input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="school">
+      </div>
+
+      <div class="col-md-1 offset-md-1">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="school-switch">
+          <label class="custom-control-label" for="school-switch"></label>
+        </div>
+      </div>
     </div>
 
 
+    <div class="form-row mb-lg-1">
+      <label for="graduation-year" class="col-md-2 col-form-label">Graduation Year: </label>
+      <div class="col-md-6">
+        <input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="graduation-year">
+      </div>
+
+      <div class="col-md-1 offset-md-1">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="graduation-year-switch">
+          <label class="custom-control-label" for="graduation-year-switch"></label>
+        </div>
+      </div>
+    </div>
 
 
-  </body>
-</html>
+    <div class="form-row mb-lg-4">
+      <div class="col-md-3 offset-md-6">
+        <button type="button" class="btn btn-primary" style="padding:10px">Save Changes</button>
+      </div>
+      <div class="col-md-3">
+        <button type="button" class="btn btn-secondary" style="padding:10px">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
