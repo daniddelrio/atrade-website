@@ -5,6 +5,9 @@ from django.dispatch import receiver
 from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
 
+def user_directory_path(instance):
+	return 'user_{0}/'.format(instance.user.id)
+
 class Profile(models.Model):
 	SCHOOL_CHOICES = [
 		('SOSE', 'SOSE'),
@@ -22,7 +25,8 @@ class Profile(models.Model):
 	trade_pts = models.IntegerField(default=0)
 	contact_num = models.CharField(default="", help_text="Please use the following format: +639123456789", max_length=11)
 	fb_link = models.CharField(default="", help_text="Please use the following format: facebook.com/your.profile", max_length=40)
-	
+	display_pic = models.ImageField(default="default-user.jpg", upload_to=user_directory_path)	
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:
