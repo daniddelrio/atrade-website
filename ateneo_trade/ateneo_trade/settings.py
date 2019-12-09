@@ -70,7 +70,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'atrade_db',
 		'USER': 'root',
-		'PASSWORD': 'admin',
+		'PASSWORD': '',
 		'HOST': '',
 		'PORT': '',
     }
