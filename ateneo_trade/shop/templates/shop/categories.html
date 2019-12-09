@@ -6,7 +6,14 @@ Categories
 {% endblock %}
 
 {% block links %}
-  <link rel="stylesheet" href="{% static 'shop/css/categories.css' %}">
+	<link rel="stylesheet" href="{% static 'shop/css/categories.css' %}">
+	<script>
+		$(document).ready(function(e) {
+			{% for cat in category_list %}
+				$('#'.concat(cat)).attr('checked', true);
+			{% endfor %}
+		});
+	</script>
 {% endblock %}
 
 {% block header %}
@@ -27,28 +34,27 @@ Categories
 	</div>
 	<div class="body row">
 		<div class="col-sm-3 categories py-sm-4 px-sm-4">
-			<form method="post">
-				{% csrf_token %}
+			<form method="GET">
 				<h5>Categories</h5>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck1" name="1" value="Clothes">
-				  <label class="custom-control-label" for="customCheck1">Clothes</label>
+				  <input type="checkbox" class="custom-control-input" id="1" name="1" value="Clothes">
+				  <label class="custom-control-label" for="1">Clothes</label>
 				</div>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck2" name="2" value="Shoes">
-				  <label class="custom-control-label" for="customCheck2">Shoes</label>
+				  <input type="checkbox" class="custom-control-input" id="2" name="2" value="Shoes">
+				  <label class="custom-control-label" for="2">Shoes</label>
 				</div>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck3" name="3" value="School Supplies">
-				  <label class="custom-control-label" for="customCheck3">School Supplies</label>
+				  <input type="checkbox" class="custom-control-input" id="3" name="3" value="School Supplies">
+				  <label class="custom-control-label" for="3">School Supplies</label>
 				</div>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck4" name="4" value="Non-academic Books">
-				  <label class="custom-control-label" for="customCheck4">Non-academic Books</label>
+				  <input type="checkbox" class="custom-control-input" id="4" name="4" value="Non-academic Books">
+				  <label class="custom-control-label" for="4">Non-academic Books</label>
 				</div>
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck5" name="5" value="Academic Books">
-				  <label class="custom-control-label" for="customCheck5">Academic Books</label>
+				  <input type="checkbox" class="custom-control-input" id="5" name="5" value="Academic Books">
+				  <label class="custom-control-label" for="5">Academic Books</label>
 				</div>
 				<div class="text-center mt-sm-3">
 					<button type="submit" class="btn btn-primary font-weight-bold item-btn">

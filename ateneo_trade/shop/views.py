@@ -97,15 +97,6 @@ class Home(ListView):
 
 		return object_list
 
-	def post( self, request ):
-		query = Q()
-		for item in request.POST.items():
-			if(item[0] =='csrfmiddlewaretoken'):
-				continue
-			query.add(Q(category=item[1]),Q.OR)
-		items = Item.objects.filter(query).order_by('-id')
-		return render( request, Categories.template_name, { 'items':items, 'data':request.POST.items() })
-
 class ViewItemDetail(TemplateView):
 	template_name = 'shop/item.html'
 
@@ -123,16 +114,20 @@ class ViewYourItems(TemplateView):
 
 class Categories(TemplateView):
 	template_name = 'shop/categories.html'
-
-	def get( self, request ):
-		items = Item.objects.all().order_by('-id')
-		return render(request, self.template_name, { 'items':items })
 	
-	def post( self, request ):
+	def get(self, request):
+		items = Item.objects.all().order_by('-id')	
+		category_list = []
 		query = Q()
-		for item in request.POST.items():
-			if(item[0] =='csrfmiddlewaretoken'):
-				continue
-			query.add(Q(category=item[1]),Q.OR)
-		items = Item.objects.filter(query).order_by('-id')
-		return render( request, self.template_name, { 'items':items, 'data':request.POST.items() })
+		has_query = False
+		for name in range(1,6):
+			category = self.request.GET.get(str(name), None)
+			if( category != None ):
+				query.add(Q(category=category),Q.OR)
+				has_query = True
+				category_list.append(name)
+		
+		if( has_query ):
+			items = Item.objects.filter(query).order_by('-id')
+		print(category_list)
+		return render( request, self.template_name, { 'items':items, 'category_list':category_list })
