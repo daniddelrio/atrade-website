@@ -6,8 +6,8 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.db import transaction
 from django.db.models import Q
-from .models import Profile, Item, Image
-from .forms import UserForm, ProfileForm, ItemForm, ImageForm
+from .models import Profile, Item, Image, DisplayPicture
+from .forms import UserForm, ProfileForm, ItemForm, ImageForm, DPForm
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.forms import formset_factory
@@ -20,7 +20,7 @@ def update_profile(request):
 	if request.method == 'POST':
 		user_form = UserForm(request.POST, instance=request.user)
 		profile_form = ProfileForm(request.POST, instance=request.user.profile)
-		if user_form.is_valid() and profile_form.is_valid():
+		if user_form.is_valid() and profile_form.is_valid() and dp_form.is_valid():
 			user_form.save()
 			profile_form.save()
 			return HttpResponseRedirect('/')

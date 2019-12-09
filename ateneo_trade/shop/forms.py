@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, HttpResponseRedirect
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from shop.models import Profile, Item, Image
+from shop.models import Profile, Item, Image, DisplayPicture
 from django import forms
 
 class UserForm(forms.ModelForm):
@@ -12,7 +12,12 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		fields = ('school','school_is_visible','major','major_is_visible','grad_year','gradyr_is_visible','contact_num','fb_link','display_pic')
+		fields = ('school','school_is_visible','major','major_is_visible','grad_year','gradyr_is_visible','contact_num','fb_link')
+
+class DPForm(forms.ModelForm):
+	class Meta:
+		model = DisplayPicture
+		fields = ('display_pic',)
 
 class ItemForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
