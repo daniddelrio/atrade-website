@@ -46,7 +46,7 @@ def Logout(request):
 @transaction.atomic
 def post_item(request):
 	ImageFormSet = formset_factory(ImageForm, extra=5)
-	
+
 	if request.method == 'POST':
 		item_form = ItemForm(request.POST)
 		data = {
@@ -55,12 +55,12 @@ def post_item(request):
 			'form-MAX_NUM_FORMS': u'5',
 		}
 		formset = ImageFormSet(request.POST, request.FILES)
-		
+
 		if item_form.is_valid() and formset.is_valid():
 			item = item_form.save(commit=False)
 			item.user = request.user
 			item.save()
-			
+
 			for form in formset:
 				if form.is_valid():
 					try:
@@ -69,7 +69,7 @@ def post_item(request):
 						photo.save()
 					except:
 						messages.error(request, "Database error. Please try again.")
-			
+
 			messages.success(request, 'Item uploaded successfully!')
 			return HttpResponseRedirect('/')
 		else:
@@ -77,13 +77,25 @@ def post_item(request):
 	else:
 		item_form = ItemForm(instance=request.user)
 		formset = ImageFormSet()
-	
+
 	return render(request, 'shop/post_item.html', {'item_form': item_form, 'formset': formset})
 
 class Home(ListView):
 	template_name = 'shop/home.html'
 	model = Item
 	ordering = ['-id']
+
+	def get_queryset(self):
+		
+		name = self.request.GET.get('search', None)
+
+		print(name)
+		if (name != None ):
+			object_list = self.model.objects.filter(name__icontains = name)
+		else:
+			object_list = self.model.objects.all()
+
+		return object_list
 
 	def post( self, request ):
 		query = Q()
