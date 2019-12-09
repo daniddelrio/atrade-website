@@ -22,11 +22,13 @@ Seller Profile
 			<img src="{% static 'shop/assets/riana-big.svg' %}">
 		</div>
 		<div class="col">
-			<h4 class="seller-name">{{ items.user.get_full_name }}</h4>
-			<h6 class="seller-text">Rating: {{ items.user.profile.trade_pts }}/5</h6>
-			<h6 class="seller-text">{{ items.user.profile.contact_num }}</h6>
-			<h6 class="seller-text">{{ items.user.profile.fb_link }}</h6>
-			<h6 class="seller-text">{{ items.user.profile.school }} {{ items.user.profile.grad_year }}</h6>
+			{% with items|first as it %}
+				<h4 class="seller-name">{{ it.user.get_full_name }}</h4>
+				<h6 class="seller-text">Rating: {{ it.user.profile.trade_pts }}/5</h6>
+				<h6 class="seller-text">{{ it.user.profile.contact_num }}</h6>
+				<h6 class="seller-text">{{ it.user.profile.fb_link }}</h6>
+				<h6 class="seller-text">{{ it.user.profile.school }} {{ it.user.profile.grad_year }}</h6>
+			{% endwith %}
 		</div>
 	</div>
 	<br>
