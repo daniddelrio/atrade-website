@@ -46,3 +46,8 @@ class Item(models.Model):
 class Image(models.Model):
 	item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='images/%Y/%m/%d/')
+
+class Rating(models.Model):
+	rater = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE, related_name='user_rater')
+	ratee = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE, related_name='user_ratee')
+	rating_number = models.IntegerField(blank=True, null=True)
