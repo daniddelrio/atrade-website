@@ -130,7 +130,7 @@ class Categories(TemplateView):
 		if( has_query ):
 			items = Item.objects.filter(query).order_by('-id')
 		print(category_list)
-		return render( request, self.template_name, { 'items':items, 'category_list':category_list })
+		return render( request, self.template_name, { 'items':items, 'category_list':category_list, 'cats':Item.CATEGORIES })
 
 class SellerProfile(TemplateView):
 	template_name = 'shop/seller.html'
