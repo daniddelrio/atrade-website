@@ -86,14 +86,14 @@ class Home(ListView):
 	ordering = ['-id']
 
 	def get_queryset(self):
-		
+
 		name = self.request.GET.get('search', None)
 
 		print(name)
 		if (name != None ):
-			object_list = self.model.objects.filter(name__icontains = name)
+			object_list = self.model.objects.filter(Q(name__icontains = name)|Q(category__icontains = name)|Q(user__first_name__icontains = name)|Q(user__last_name__icontains = name)|Q(description__icontains = name)).order_by('-id')
 		else:
-			object_list = self.model.objects.all()
+			object_list = self.model.objects.all().order_by('-id')
 
 		return object_list
 
@@ -116,7 +116,7 @@ class ViewItemDetail(TemplateView):
 
 class ViewYourItems(TemplateView):
 	template_name = 'shop/profile.html'
-	
+
 	def get( self, request ):
 		items = Item.objects.filter(user=request.user).order_by('-id')
 		return render(request, self.template_name, { 'items':items })
@@ -127,7 +127,7 @@ class Categories(TemplateView):
 	def get( self, request ):
 		items = Item.objects.all().order_by('-id')
 		return render(request, self.template_name, { 'items':items })
-	
+
 	def post( self, request ):
 		query = Q()
 		for item in request.POST.items():
