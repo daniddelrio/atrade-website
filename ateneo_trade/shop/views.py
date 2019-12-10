@@ -145,7 +145,7 @@ class Categories(TemplateView):
 				items = items.order_by('-price')
 				selected_order = 'price-rev'
 
-		return render( request, self.template_name, { 'items':items, 'category_list':category_list, 'selected_order': selected_order })
+		return render( request, self.template_name, { 'items':items, 'category_list':category_list, 'selected_order': selected_order, 'cats':Item.CATEGORIES })
 
 class SellerProfile(TemplateView):
 	template_name = 'shop/seller.html'

@@ -58,27 +58,13 @@ Categories
 		</div>
 		<div class="body row">
 			<div class="col categories mr-2 py-sm-4 px-sm-4">
-				<h5>Categories</h5>
-				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="1" name="1" value="Clothes">
-				  <label class="custom-control-label" for="1">Clothes</label>
-				</div>
-				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="2" name="2" value="Shoes">
-				  <label class="custom-control-label" for="2">Shoes</label>
-				</div>
-				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="3" name="3" value="School Supplies">
-				  <label class="custom-control-label" for="3">School Supplies</label>
-				</div>
-				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="4" name="4" value="Non-academic Books">
-				  <label class="custom-control-label" for="4">Non-academic Books</label>
-				</div>
-				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="5" name="5" value="Academic Books">
-				  <label class="custom-control-label" for="5">Academic Books</label>
-				</div>
+				<h5>Categories</h5> 
+				{% for cat in cats %}
+					<div class="custom-control custom-checkbox mt-sm-3">
+						<input type="checkbox" class="custom-control-input" id="{{ forloop.counter }}" name="{{ forloop.counter }}" value="{{ cat.1 }}">
+						<label class="custom-control-label" for="{{ forloop.counter }}">{{ cat.1 }}</label>
+				 	</div>
+				{% endfor %}
 				<div class="text-center mt-sm-3">
 					<button type="submit" class="btn btn-primary font-weight-bold item-btn">
 		              Filter and Sort
