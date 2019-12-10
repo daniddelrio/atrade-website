@@ -16,6 +16,7 @@ class Profile(models.Model):
 		('SOH', 'SOH'),
 	]
 	user = models.OneToOneField(User, db_index=True, on_delete=models.CASCADE, unique=True)
+	email_is_visible = models.BooleanField(default=False)
 	school = models.CharField(blank=True, choices=SCHOOL_CHOICES, default=None, max_length=4, null=True)
 	school_is_visible = models.BooleanField(default=False)
 	grad_year = models.IntegerField(blank=True, default=None, null=True, validators=[MinValueValidator(1859), MaxValueValidator(9999)])
@@ -24,11 +25,11 @@ class Profile(models.Model):
 	major_is_visible = models.BooleanField(default=False)
 	trade_pts = models.IntegerField(default=0)
 	contact_num = models.CharField(default="", help_text="Please use the following format: +639123456789", max_length=15)
-	fb_link = models.CharField(default="", help_text="Please use the following format: facebook.com/your.profile", max_length=40)
+	fb_link = models.CharField(default="facebook.com", help_text="Please use the following format: facebook.com/your.profile", max_length=40)
 
 class DisplayPicture(models.Model):
 	user = models.OneToOneField(User, db_index=True, on_delete=models.CASCADE, unique=True)
-	display_pic = models.ImageField(default="default-user.jpg", upload_to=user_directory_path)	
+	display_pic = models.ImageField(default="default-user.jpg", upload_to=user_directory_path)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -45,6 +46,14 @@ class Item(models.Model):
 		('Non-Academic Books', 'Non-Academic Books'),
 		('School Supplies', 'School Supplies'),
 		('Clothes', 'Clothes'),
+		('Electronics', 'Electronics'),
+		('Furniture', 'Furniture'),
+		('Events', 'Events'),
+		('Food', 'Food'),
+		('Service', 'Service'),
+		('Cosmetics', 'Cosmetics'),
+		('Toiletries', 'Toiletries'),
+		
 	]
 	user = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE)
 	name = models.CharField(default="", max_length=150)

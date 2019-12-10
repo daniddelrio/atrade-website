@@ -34,57 +34,47 @@
         <img src="{% static 'shop/assets/riana.svg' %}" alt="Riana">
     </div>
     <div class="col-md-10 div-info">
-        <h6 class="seller-name seller-contact">{{ item.user.get_full_name }}</h6>
+        <a href="{% url 'seller-profile' item.user.pk %}"><h6 class="seller-name seller-contact">{{ item.user.get_full_name }}</h6></a>
         <h6 class="seller-contact">{{ item.user.profile.contact_num }}</h6>
         <h6 class="seller-contact">Rating: {{ item.user.profile.trade_pts }}/5</h6>
     </div>
 </div>
 <div class="item-container my-sm-5 ml-sm-5">
-	<div class="item-image">
-		<img src="{% static 'shop/assets/succulent1.svg' %}" class="img-item" alt="Succulent 1">
-	</div>
-	<div class="item-image">
-		<img src="{% static 'shop/assets/succulent2.svg' %}" class="img-item" alt="Succulent 2">
-	</div>
-	<div class="item-image">
-		<img src="{% static 'shop/assets/succulent3.svg' %}" class="img-item" alt="Succulent 3">
-	</div>
-	<div class="item-image">
-		<img src="{% static 'shop/assets/succulent4.svg' %}" class="img-item" alt="Succulent 4">
-	</div>
-	<div class="item-image">
-		<img src="{% static 'shop/assets/succulent4.svg' %}" class="img-item" alt="Succulent 4">
-	</div>
-
+	{% for image in item.image_set.all %}
+		{% if image.image != "" %}
+			<div class="item-image">
+				<img src="/media/{{ image.image }}" class="img-item" alt="{{ image.name }}">
+			</div>
+		{% endif %}
+	{% endfor %}
 	<div class="big-image">
-		<img src="{% static 'shop/assets/succulent1.svg' %}" id="big-image-id" alt="Succulent 1">
+		{% with item.image_set.all|first as img %}
+			<img id="big-image-id" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+		{% endwith %}
 	</div>
 
 	<div class="item-info">
-		<h3 class="item-name">Succulents</h3>
-		<h5 class="item-name item-price">Php 100.00</h5>
+		<h3 class="item-name">{{ item.name }}</h3>
+		<h5 class="item-name item-price">Php {{ item.price }}</h5>
 		<div class="row">
 			<div class="col-sm-1">
 				<img src="{% static 'shop/assets/place.svg' %}" alt="Place">
 			</div>
 			<div class="col">
-				<small>Paranaque City</small>
+				<small>{{ item.location }}</small>
 			</div>
 		</div>
 		<br>
 		<p>
-			Hello! Selling succulents for only 100 pesos each! They will make great companions when ur feeling lonely.
-		</p>
-		<p>
-			You will not be disappointed in these succulents they are like friends.
+			{{ item.description }}
 		</p>
 		<div class="d-flex flex-wrap">
 		    <div class="item-category px-md-3">
-		        Plants
+		        {{ item.category }}
 		    </div>
 		</div>
 		<br>
-		<a href="#" class="btn btn-primary font-weight-bold item-btn">
+		<a href="http://www.{{item.user.profile.fb_link}}" class="btn btn-primary font-weight-bold item-btn">
           Message Seller
 		</a>
 	</div>
@@ -92,34 +82,19 @@
 <div class="more-user-items ml-sm-5 my-5">
 	<h4 class="item-name">More from this seller</h4>
 	<div class="items mt-sm-4">
-		<div class="card item-card">
-			<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
-			<div class="item-body mx-3 py-2">
-			    <h5 class="user-item-title">Succulents</h5>
-			    <h6 class="user-item-price">Php 100.00</h6>
-			  </div>
-		</div>
-		<div class="card item-card">
-			<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
-			<div class="item-body mx-3 py-2">
-			    <h5 class="user-item-title">Succulents</h5>
-			    <h6 class="user-item-price">Php 100.00</h6>
-			  </div>
-		</div>
-		<div class="card item-card">
-			<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
-			<div class="item-body mx-3 py-2">
-			    <h5 class="user-item-title">Succulents</h5>
-			    <h6 class="user-item-price">Php 100.00</h6>
-			  </div>
-		</div>
-		<div class="card item-card">
-			<img src="{% static 'shop/assets/succulent-profile.svg' %}" class="card-img-top" alt="Succulent">
-			<div class="item-body mx-3 py-2">
-			    <h5 class="user-item-title">Succulents</h5>
-			    <h6 class="user-item-price">Php 100.00</h6>
-			  </div>
-		</div>
+		{% for more_item in user.item_set.all %}
+			{% if item != more_item %}
+			<div class="card item-card">
+				{% with more_item.image_set.all|first as img %}
+					<a href="{% url 'view-item-detail' more_item.pk %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{more_item.name}}"></a>
+				{% endwith %}
+				<div class="item-body mx-3 py-2">
+					<a href="{% url 'view-item-detail' more_item.pk %}"><h5 class="user-item-title">{{ more_item.name }}</h5></a>
+					<h6 class="user-item-price">Php {{ more_item.price }}</h6>
+				  </div>
+			</div>
+			{% endif %}
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}

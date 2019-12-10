@@ -8,6 +8,7 @@
 	border-radius: 10px;
 	font-size: 0.9em;
 	height: 90%;
+	min-width: 10rem;
 }
 
 .categories h5 {
@@ -21,7 +22,7 @@
 
 .item-btn {
 	border-radius: 10px;
-	width: 6rem;
+	width: 7rem;
 	font-size: 0.9em;
 }
 
@@ -33,7 +34,7 @@
 
 .items {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	grid-gap: 2em;
 
 }
@@ -42,6 +43,11 @@
 	width: 11em;
 	border-radius: 10px;
 	box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.card-img-top {
+	height: 10rem;
+	object-fit: cover;
 }
 
 .item-title {

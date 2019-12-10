@@ -6,7 +6,36 @@ Categories
 {% endblock %}
 
 {% block links %}
-  <link rel="stylesheet" href="{% static 'shop/css/categories.css' %}">
+	<link rel="stylesheet" href="{% static 'shop/css/categories.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(e) {
+			{% for cat in category_list %}
+				$('#'.concat({{cat}})).attr('checked', true);
+			{% endfor %}
+
+			var selectedOrder = "{{ selected_order }}";
+
+			if(selectedOrder == "time") {
+				$('select[name="order"]').find('option[value="time"]').attr("selected",true);
+			}
+			else if(selectedOrder == "time-rev") {
+				$('select[name="order"]').find('option[value="time-rev"]').attr("selected",true);
+			}
+			else if(selectedOrder == "price") {
+				$('select[name="order"]').find('option[value="price"]').attr("selected",true);
+			}
+			else if(selectedOrder == "price-rev") {
+				$('select[name="order"]').find('option[value="price-rev"]').attr("selected",true);
+			}
+
+		});
+
+		function uncheckAll(){
+			$('input[type="checkbox"]:checked').prop('checked',false);
+			$('select[name="order"]').find('option[value="time"]').attr("selected",true);
+		}
+	</script>
 {% endblock %}
 
 {% block header %}
@@ -17,59 +46,52 @@ Categories
 
 {% block content %}
 <div class="seller-container">
-	<div class="sort-form align-items-center offset-sm-7 d-flex justify-content-end">
-		<label for="item-price" class="col-lg-3 col-form-label">Sort By</label>
-		<select id="item-price" class="custom-select custom-select-sm">
-		  <option selected>Price (Low to High)</option>
-		  <option value="1">Oldest to Newest</option>
-		  <option value="2">Newest to Oldest</option>
-		</select>
-	</div>
-	<div class="body row">
-		<div class="col-sm-3 categories py-sm-4 px-sm-4">
-			<form method="post">
-				{% csrf_token %}
-				<h5>Categories</h5>
+	<form method="GET">
+		<div class="sort-form align-items-center offset-sm-5 d-flex justify-content-end">
+			<label for="item-sort" class="col-lg-3 col-form-label">Sort By</label>
+			<select id="item-sort" name="order" class="col-lg-5 custom-select custom-select-sm">
+			  <option value="time" id="time">Newest to Oldest</option>
+			  <option value="time-rev" id="time-rev">Oldest to Newest</option>
+			  <option value="price" id="price">Price (Low to High)</option>
+			  <option value="price-rev" id="price-rev">Price (High to Low)</option>
+			</select>
+		</div>
+		<div class="body row">
+			<div class="col categories mr-2 py-sm-4 px-sm-4">
+				<h5>Categories</h5> 
 				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck1" name="1" value="Clothes">
-				  <label class="custom-control-label" for="customCheck1">Clothes</label>
-				</div>
-				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck2" name="2" value="Shoes">
-				  <label class="custom-control-label" for="customCheck2">Shoes</label>
-				</div>
-				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck3" name="3" value="School Supplies">
-				  <label class="custom-control-label" for="customCheck3">School Supplies</label>
-				</div>
-				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck4" name="4" value="Non-academic Books">
-				  <label class="custom-control-label" for="customCheck4">Non-academic Books</label>
-				</div>
-				<div class="custom-control custom-checkbox mt-sm-3">
-				  <input type="checkbox" class="custom-control-input" id="customCheck5" name="5" value="Academic Books">
-				  <label class="custom-control-label" for="customCheck5">Academic Books</label>
-				</div>
+					<input type="checkbox" class="custom-control-input" id="0" name="0" value="All">
+					<label class="custom-control-label" for="0">All</label>
+				 </div>
+				{% for cat in cats %}
+					<div class="custom-control custom-checkbox mt-sm-3">
+						<input type="checkbox" class="custom-control-input" id="{{ forloop.counter }}" name="{{ forloop.counter }}" value="{{ cat.1 }}">
+						<label class="custom-control-label" for="{{ forloop.counter }}">{{ cat.1 }}</label>
+				 	</div>
+				{% endfor %}
 				<div class="text-center mt-sm-3">
 					<button type="submit" class="btn btn-primary font-weight-bold item-btn">
-		              Filter
+		              Filter and Sort
+					</button>
+					<button type="button" class="btn btn-light font-weight-bold item-btn" onclick="uncheckAll()">
+		              Clear All
 					</button>
 				</div>
-			</form>
-		</div>
-		<div class="col-sm-8 items mt-4 ml-sm-5">
-			{% for item in items %}
-			<div class="card item-card">
-				{% with item.image_set.all|first as img %}
-					<a href="item/{{item.pk}}/detail/"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
-				{% endwith %}
-				<div class="item-body mx-3 py-2">
-					<h5 class="item-title">{{ item.name }}</h5>
-					<h6 class="item-price">₱ {{ item.price }}</h6>
-					</div>
 			</div>
-			{% endfor %}
+			<div class="col-sm-8 items mt-4 ml-sm-5">
+				{% for item in items %}
+				<div class="card item-card">
+					{% with item.image_set.all|first as img %}
+						<a href="{% url 'view-item-detail' item.id %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+					{% endwith %}
+					<div class="item-body mx-3 py-2">
+						<a href="{% url 'view-item-detail' item.id %}"><h5 class="item-title">{{ item.name }}</h5></a>
+						<h6 class="item-price">₱ {{ item.price }}</h6>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
 		</div>
-	</div>
+	</form>
 </div>
 {% endblock %}
