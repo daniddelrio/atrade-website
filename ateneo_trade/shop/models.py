@@ -28,7 +28,7 @@ class Profile(models.Model):
 
 class DisplayPicture(models.Model):
 	user = models.OneToOneField(User, db_index=True, on_delete=models.CASCADE, unique=True)
-	display_pic = models.ImageField(default="default-user.jpg", upload_to=user_directory_path)	
+	display_pic = models.ImageField(default="default-user.jpg", upload_to=user_directory_path)
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
@@ -45,6 +45,14 @@ class Item(models.Model):
 		('Non-Academic Books', 'Non-Academic Books'),
 		('School Supplies', 'School Supplies'),
 		('Clothes', 'Clothes'),
+		('Electronics', 'Electronics'),
+		('Furniture', 'Furniture'),
+		('Events', 'Events'),
+		('Food', 'Food'),
+		('Service', 'Service'),
+		('Cosmetics', 'Cosmetics'),
+		('Toiletries', 'Toiletries'),
+		
 	]
 	user = models.ForeignKey(User, db_index=True, on_delete=models.CASCADE)
 	name = models.CharField(default="", max_length=150)
