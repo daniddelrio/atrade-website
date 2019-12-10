@@ -102,14 +102,15 @@ class ViewYourItems(TemplateView):
 	template_name = 'shop/profile.html'
 
 	def get( self, request ):
-		items = Item.objects.filter(user=request.user)
-		return render(request, self.template_name, { 'items':items })
+		items = Item.objects.filter(user=request.user, is_sold=False)
+		sold_items = Item.objects.filter(user=request.user, is_sold=True)
+		return render(request, self.template_name, { 'items':items, 'sold_items':sold_items })
 
 class Categories(TemplateView):
 	template_name = 'shop/categories.html'
 
 	def get(self, request):
-		items = Item.objects.all().order_by('-id')
+		items = Item.objects.filter(is_sold=False)
 		category_list = []
 		query = Q()
 		has_query = False
@@ -124,9 +125,7 @@ class Categories(TemplateView):
 				category_list.append(name)
 
 		if( has_query ):
-			items = Item.objects.filter(query)
-		else:
-			items = Item.objects.all()
+			items = items.filter(query)
 
 		sort = self.request.GET.get('order', None)
 		selected_order = 'time'
@@ -150,5 +149,5 @@ class SellerProfile(TemplateView):
 	template_name = 'shop/seller.html'
 
 	def get( self, request, seller ):
-		items = Item.objects.filter(user=seller).order_by('-id')
+		items = Item.objects.filter(user=seller, is_sold=False).order_by('-id')
 		return render(request, self.template_name, {'items':items})
