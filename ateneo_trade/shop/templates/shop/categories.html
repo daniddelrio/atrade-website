@@ -13,7 +13,28 @@ Categories
 			{% for cat in category_list %}
 				$('#'.concat({{cat}})).attr('checked', true);
 			{% endfor %}
+
+			var selectedOrder = "{{ selected_order }}";
+
+			if(selectedOrder == "time") {
+				$('select[name="order"]').find('option[value="time"]').attr("selected",true);
+			}
+			else if(selectedOrder == "time-rev") {
+				$('select[name="order"]').find('option[value="time-rev"]').attr("selected",true);
+			}
+			else if(selectedOrder == "price") {
+				$('select[name="order"]').find('option[value="price"]').attr("selected",true);
+			}
+			else if(selectedOrder == "price-rev") {
+				$('select[name="order"]').find('option[value="price-rev"]').attr("selected",true);
+			}
+
 		});
+
+		function uncheckAll(){
+			$('input[type="checkbox"]:checked').prop('checked',false);
+			$('select[name="order"]').find('option[value="time"]').attr("selected",true);
+		}
 	</script>
 {% endblock %}
 
@@ -25,17 +46,18 @@ Categories
 
 {% block content %}
 <div class="seller-container">
-	<div class="sort-form align-items-center offset-sm-7 d-flex justify-content-end">
-		<label for="item-price" class="col-lg-3 col-form-label">Sort By</label>
-		<select id="item-price" class="custom-select custom-select-sm">
-		  <option selected>Price (Low to High)</option>
-		  <option value="1">Oldest to Newest</option>
-		  <option value="2">Newest to Oldest</option>
-		</select>
-	</div>
-	<div class="body row">
-		<div class="col-lg-3 categories mr-2 py-sm-4 px-sm-4">
-			<form method="GET">
+	<form method="GET">
+		<div class="sort-form align-items-center offset-sm-5 d-flex justify-content-end">
+			<label for="item-sort" class="col-lg-3 col-form-label">Sort By</label>
+			<select id="item-sort" name="order" class="col-lg-5 custom-select custom-select-sm">
+			  <option value="time" id="time">Newest to Oldest</option>
+			  <option value="time-rev" id="time-rev">Oldest to Newest</option>
+			  <option value="price" id="price">Price (Low to High)</option>
+			  <option value="price-rev" id="price-rev">Price (High to Low)</option>
+			</select>
+		</div>
+		<div class="body row">
+			<div class="col categories mr-2 py-sm-4 px-sm-4">
 				<h5>Categories</h5>
 				<div class="custom-control custom-checkbox mt-sm-3">
 				  <input type="checkbox" class="custom-control-input" id="1" name="1" value="Clothes">
@@ -59,24 +81,27 @@ Categories
 				</div>
 				<div class="text-center mt-sm-3">
 					<button type="submit" class="btn btn-primary font-weight-bold item-btn">
-		              Filter
+		              Filter and Sort
+					</button>
+					<button type="button" class="btn btn-light font-weight-bold item-btn" onclick="uncheckAll()">
+		              Clear All
 					</button>
 				</div>
-			</form>
-		</div>
-		<div class="col-sm-8 items mt-4 ml-sm-5">
-			{% for item in items %}
-			<div class="card item-card">
-				{% with item.image_set.all|first as img %}
-					<a href="{% url 'view-item-detail' item.pk %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
-				{% endwith %}
-				<div class="item-body mx-3 py-2">
-					<a href="{% url 'view-item-detail' item.pk %}"><h5 class="item-title">{{ item.name }}</h5></a>
-					<h6 class="item-price">₱ {{ item.price }}</h6>
-					</div>
 			</div>
-			{% endfor %}
+			<div class="col-sm-8 items mt-4 ml-sm-5">
+				{% for item in items %}
+				<div class="card item-card">
+					{% with item.image_set.all|first as img %}
+						<a href="{% url 'view-item-detail' item.id %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+					{% endwith %}
+					<div class="item-body mx-3 py-2">
+						<a href="{% url 'view-item-detail' item.id %}"><h5 class="item-title">{{ item.name }}</h5></a>
+						<h6 class="item-price">₱ {{ item.price }}</h6>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
 		</div>
-	</div>
+	</form>
 </div>
 {% endblock %}

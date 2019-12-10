@@ -26,6 +26,11 @@
 
 }
 
+.card-img-top {
+	height: 12rem;
+	object-fit: cover;
+}
+
 .item-card {
 	width: 13em;
 	border-radius: 10px;
