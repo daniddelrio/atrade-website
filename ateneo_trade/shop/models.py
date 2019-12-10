@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
 
-def user_directory_path(instance):
+def user_directory_path(instance, filename):
 	return 'user_{0}/'.format(instance.user.id)
 
 class Profile(models.Model):
@@ -26,9 +26,6 @@ class Profile(models.Model):
 	trade_pts = models.IntegerField(default=0)
 	contact_num = models.CharField(default="", help_text="Please use the following format: +639123456789", max_length=15)
 	fb_link = models.CharField(default="facebook.com", help_text="Please use the following format: facebook.com/your.profile", max_length=40)
-
-class DisplayPicture(models.Model):
-	user = models.OneToOneField(User, db_index=True, on_delete=models.CASCADE, unique=True)
 	display_pic = models.ImageField(default="default-user.jpg", upload_to=user_directory_path)
 
 @receiver(post_save, sender=User)
