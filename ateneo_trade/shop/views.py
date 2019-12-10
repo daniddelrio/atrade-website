@@ -184,4 +184,4 @@ class SellerProfile(TemplateView):
 
 	def get( self, request, seller ):
 		items = Item.objects.filter(user=seller, is_sold=False).order_by('-id')
-		return render(request, self.template_name, {'items':items})
+		return render(request, self.template_name, {'items':items, 'seller': User.objects.get(pk=seller)})

@@ -19,7 +19,7 @@ Seller Profile
 <div class="seller-container">
 	<div class="row">
 		<div class="seller-img col-md-2 col-sm-4">
-			<img src="{% get_media_prefix %}{{ request.user.profile.display_pic }}" alt="Riana" class="rounded-circle" style="height:100px; width: 100px; object-fit: cover;">
+			<img src="{% get_media_prefix %}{{ seller.profile.display_pic }}" alt="Riana" class="rounded-circle" style="height:100px; width: 100px; object-fit: cover;">
 		</div>
 		<div class="col">
 			{% with items|first as it %}
