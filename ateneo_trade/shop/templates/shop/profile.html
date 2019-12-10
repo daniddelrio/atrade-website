@@ -7,6 +7,21 @@ My Profile
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'shop/css/profile.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script>
+  	$(document).ready(function(e) {
+  	  $('#for-sale').click(function() {
+  	  	$("#unsold-items").css("display", "block");
+  	  	$("#sold-items").css("display", "none");
+  	  });
+
+  	  $('#sold').click(function() {
+  	  	$("#unsold-items").css("display", "none");
+  	  	$("#sold-items").css("display", "block");
+  	  });
+  	});
+  </script>
 {% endblock %}
 
 {% block header %}
@@ -30,25 +45,40 @@ My Profile
 	</div>
 	<br>
 	<div class="item-buttons d-flex flex-wrap">
-		<button type="submit" class="btn btn-primary font-weight-bold item-btn">
+		<button type="button" class="btn btn-primary font-weight-bold item-btn" id="for-sale">
           Items for Sale
 		</button>
-		<a role="button" class="btn btn-light font-weight-bold item-btn ml-4 py-3">
+		<button type="button" class="btn btn-light font-weight-bold item-btn ml-4 py-3" id="sold">
           Items Sold
-        </a>
+        </button>
 	</div>
 	<div class="items mt-5">
-		{% for item in items %}
-			<div class="card item-card">
-				{% with item.image_set.all|first as img %}
-					<a href="{% url 'view-item-detail' item.pk %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
-				{% endwith %}
-				<div class="item-body mx-3 py-2">
-					<a href="{% url 'view-item-detail' item.pk %}"><h5 class="item-title">{{ item.name }}</h5></a>
-					<h6 class="item-price">Php {{ item.price }}</h6>
-				  </div>
-			</div>
-		{% endfor %}
+		<div id="unsold-items">
+			{% for item in items %}
+				<div class="card item-card">
+					{% with item.image_set.all|first as img %}
+						<a href="{% url 'view-item-detail' item.pk %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+					{% endwith %}
+					<div class="item-body mx-3 py-2">
+						<a href="{% url 'view-item-detail' item.pk %}"><h5 class="item-title">{{ item.name }}</h5></a>
+						<h6 class="item-price">Php {{ item.price }}</h6>
+					  </div>
+				</div>
+			{% endfor %}
+		</div>
+		<div id="sold-items" style="display: none">
+			{% for item in sold_items %}
+				<div class="card item-card">
+					{% with item.image_set.all|first as img %}
+						<a href="{% url 'view-item-detail' item.pk %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+					{% endwith %}
+					<div class="item-body mx-3 py-2">
+						<a href="{% url 'view-item-detail' item.pk %}"><h5 class="item-title">{{ item.name }}</h5></a>
+						<h6 class="item-price">Php {{ item.price }}</h6>
+					  </div>
+				</div>
+			{% endfor %}
+		</div>
 	</div>
 </div>
 {% endblock %}
