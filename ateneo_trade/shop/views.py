@@ -43,6 +43,18 @@ def profile(request):
 def post_item(request):
 	return render(request, 'shop/post_item.html')
 
+@login_required
+def change_status(request, pk):
+	if Item.objects.filter(pk=pk).exists():
+		item = Item.objects.get(pk=pk)
+
+		if request.user == item.user:
+			item.is_sold = not item.is_sold
+			item.save()
+			return redirect('view-item-detail', id=pk)
+
+	return redirect('home')
+
 def Logout(request):
 	logout(request)
 	return HttpResponseRedirect('/')

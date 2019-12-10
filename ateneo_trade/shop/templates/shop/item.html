@@ -56,9 +56,9 @@
 		<div class="d-flex align-items-center">
 			<h3 class="item-name">{{ item.name }}</h3>
 			{% if item.is_sold %}
-			<h6 style="margin-left: 2rem; color: #0084FF;">Sold</h6>
+			<h6 class="text-danger" style="margin-left: 2rem">Sold</h6>
 			{% else %}
-			<h6 style="margin-left: 2rem; color: #0ACF1E;">Available</h6>
+			<h6 class="text-primary" style="margin-left: 2rem">Available</h6>
 			{% endif %}
 		</div>
 		<h5 class="item-name item-price">Php {{ item.price }}</h5>
@@ -80,9 +80,27 @@
 		    </div>
 		</div>
 		<br>
+		{% if request.user == item.user %}
+			{% if item.is_sold %}
+				<form action="{% url 'change_status' pk=item.pk %}" method="POST">
+				{% csrf_token %}
+					<button type="submit" class="btn btn-primary font-weight-bold item-btn">
+			          Mark as Unsold
+					</button>
+				</form>
+			{% else %}
+				<form action="{% url 'change_status' pk=item.pk %}" method="POST">
+				{% csrf_token %}
+					<button type="submit" class="btn btn-danger font-weight-bold item-btn">
+			          Mark as Sold
+					</button>
+				</form>
+			{% endif %}
+		{% else %}
 		<a href="http://www.{{item.user.profile.fb_link}}" class="btn btn-primary font-weight-bold item-btn">
           Message Seller
 		</a>
+		{% endif %}
 	</div>
 </div>
 {% if user.item_set.all.count > 1 %}

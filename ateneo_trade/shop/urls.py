@@ -10,6 +10,7 @@ urlpatterns = [
     path('profile/', views.update_profile, name='profile'),
     path('your-items/', login_required(views.ViewYourItems.as_view()), name='your-items'),
     path('post/', views.post_item, name='post-item'),
+    path('change-status/<int:pk>', views.change_status, name='change_status'),
     path('account/logout/', views.Logout, name='logout'),
     path('item/<int:id>/detail/', login_required(views.ViewItemDetail.as_view()), name='view-item-detail'),
     path('profile/seller/<int:seller>/', login_required(views.SellerProfile.as_view()), name='seller-profile')
