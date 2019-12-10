@@ -16,68 +16,76 @@
 {% endblock %}
 
 {% block content %}
+<form method="POST">
+{% csrf_token %}
 <div class="d-flex justify-content-center">
-  <div class="post-form">
-    <div class="form-row mb-lg-1">
+  <div class="post-form w-50">
+    <div class="form-row mb-lg-1 d-flex justify-content-center">
       <img src="{% static 'shop/assets/riana.svg' %}" class="rounded-circle" style="height:200px; margin-left:15px; padding: 10px;" />
+    </div>
 
-      <div class="form-column mt-sm-4 ml-sm-2">
-        <div class="form-row">
-          <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px">Name:</label>
-          <div class="col-lg-7">
-            <input type="text" class="form-control" id="Name" placeholder="Name">
-          </div>
-
+    <div class="form-column mt-sm-4 ml-sm-2">
+      <div class="form-row">
+        <label for="first-name" class="col-lg-5 col-form-label" style="padding:10px">First Name:</label>
+        <div class="col-lg-7" id="first-name">
+          {{ user_form.first_name }}
         </div>
+      </div>
 
-        <div class="form-row">
-          <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px" >Contact Number:</label>
-          <div class="col-lg-7">
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="0917XXXXX">
-          </div>
+      <div class="form-row">
+        <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px">Last Name:</label>
+        <div class="col-lg-7">
+          {{ user_form.last_name }}
         </div>
+      </div>
 
-        <div class="form-row">
-          <label for="facebook-name" class="col-md-5 col-form-label" style="padding:10px">Facebook Name: </label>
-          <div class="col-lg-7">
-            <input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="facebook-name">
-          </div>
+      <div class="form-row">
+        <label for="exampleInputEmail1" class="col-lg-5 col-form-label" style="padding:10px">Contact Number:</label>
+        <div class="col-lg-7">
+          {{ profile_form.contact_num }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="facebook-name" class="col-md-5 col-form-label" style="padding:10px">Facebook Link: </label>
+        <div class="col-lg-7">
+          {{ profile_form.fb_link }}
         </div>
       </div>
     </div>
 
-    <div class="form-row mb-lg-3">
-      <div class="col-md-9">
-        <label for="facebook-name" class="col-form-label">Additonal Details:</label>
+    <div class="form-row mb-lg-3 mt-lg-4">
+      <div class="col-md-10">
+        <label for="facebook-name" class="col-form-label">Additional Details:</label>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
           <label for="Visibility" class="col-form-label">Visibility</label>
       </div>
     </div>
 
     <div class="form-row mb-lg-1">
-      <label for="email" class="col-md-2 col-form-label">Email: </label>
+      <label for="email" class="col-md-3 col-form-label">Email: </label>
       <div class="col-md-6">
-        <input type="email" class="form-control form-control-sm py-lg-3 px-lg-3" id="email">
+        {{ user_form.email }}
       </div>
 
       <div class="col-md-1 offset-md-1">
         <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="email-switch">
+          {{ profile_form.email_is_visible }}
           <label class="custom-control-label" for="email-switch"></label>
         </div>
       </div>
     </div>
 
     <div class="form-row mb-lg-1">
-      <label for="school" class="col-md-2 col-form-label">School: </label>
+      <label for="school" class="col-md-3 col-form-label">School: </label>
       <div class="col-md-6">
-        <input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="school">
+        {{ profile_form.school }}
       </div>
 
       <div class="col-md-1 offset-md-1">
         <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="school-switch">
+          {{ profile_form.school_is_visible }}
           <label class="custom-control-label" for="school-switch"></label>
         </div>
       </div>
@@ -85,28 +93,29 @@
 
 
     <div class="form-row mb-lg-1">
-      <label for="graduation-year" class="col-md-2 col-form-label">Graduation Year: </label>
+      <label for="graduation-year" class="col-md-3 col-form-label">Graduation Year: </label>
       <div class="col-md-6">
-        <input type="text" class="form-control form-control-sm py-lg-3 px-lg-3" id="graduation-year">
+        {{ profile_form.grad_year }}
       </div>
 
       <div class="col-md-1 offset-md-1">
         <div class="custom-control custom-switch">
-          <input type="checkbox" class="custom-control-input" id="graduation-year-switch">
+          {{ profile_form.gradyr_is_visible }}
           <label class="custom-control-label" for="graduation-year-switch"></label>
         </div>
       </div>
     </div>
 
 
-    <div class="form-row mb-lg-4">
+    <div class="form-row mb-lg-4 mt-lg-4">
       <div class="col-md-3 offset-md-6">
-        <button type="button" class="btn btn-primary" style="padding:10px">Save Changes</button>
+        <button type="submit" class="btn btn-primary" style="padding:10px">Save Changes</button>
       </div>
       <div class="col-md-3">
-        <button type="button" class="btn btn-secondary" style="padding:10px">Cancel</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary" style="padding:10px">Cancel</a>
       </div>
     </div>
   </div>
 </div>
+</form>
 {% endblock %}

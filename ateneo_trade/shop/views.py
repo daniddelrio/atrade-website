@@ -24,7 +24,7 @@ def update_profile(request):
 		if user_form.is_valid() and profile_form.is_valid():
 			user_form.save()
 			profile_form.save()
-			return HttpResponseRedirect('/')
+			return redirect('profile')
 		else:
 			messages.error(request, _('Please correct the error below.'))
 	else:
