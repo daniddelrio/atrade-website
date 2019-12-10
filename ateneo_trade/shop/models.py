@@ -16,6 +16,7 @@ class Profile(models.Model):
 		('SOH', 'SOH'),
 	]
 	user = models.OneToOneField(User, db_index=True, on_delete=models.CASCADE, unique=True)
+	email_is_visible = models.BooleanField(default=False)
 	school = models.CharField(blank=True, choices=SCHOOL_CHOICES, default=None, max_length=4, null=True)
 	school_is_visible = models.BooleanField(default=False)
 	grad_year = models.IntegerField(blank=True, default=None, null=True, validators=[MinValueValidator(1859), MaxValueValidator(9999)])

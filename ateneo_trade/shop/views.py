@@ -20,10 +20,10 @@ def update_profile(request):
 	if request.method == 'POST':
 		user_form = UserForm(request.POST, instance=request.user)
 		profile_form = ProfileForm(request.POST, instance=request.user.profile)
-		if user_form.is_valid() and profile_form.is_valid() and dp_form.is_valid():
+		if user_form.is_valid() and profile_form.is_valid():
 			user_form.save()
 			profile_form.save()
-			return HttpResponseRedirect('/')
+			return redirect('profile')
 		else:
 			messages.error(request, _('Please correct the error below.'))
 	else:
