@@ -12,4 +12,5 @@ urlpatterns = [
     path('post/', views.post_item, name='post-item'),
     path('account/logout/', views.Logout, name='logout'),
     path('item/<int:id>/detail/', login_required(views.ViewItemDetail.as_view()), name='view-item-detail'),
+    path('profile/seller/<int:seller>/', login_required(views.SellerProfile.as_view()), name='seller-profile')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

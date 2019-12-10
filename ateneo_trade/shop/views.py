@@ -91,7 +91,7 @@ class Home(ListView):
 
 		print(name)
 		if (name != None ):
-			object_list = self.model.objects.filter(Q(name__icontains = name)|Q(category__icontains = name)|Q(user__first_name__icontains = name)|Q(user__last_name__icontains = name)).order_by('-id')
+			object_list = self.model.objects.filter(Q(name__icontains = name)|Q(category__icontains = name)|Q(user__first_name__icontains = name)|Q(user__last_name__icontains = name)|Q(description__icontains = name)).order_by('-id')
 		else:
 			object_list = self.model.objects.all().order_by('-id')
 
@@ -147,3 +147,9 @@ class Categories(TemplateView):
 
 		return render( request, self.template_name, { 'items':items, 'category_list':category_list, 'selected_order': selected_order })
 
+class SellerProfile(TemplateView):
+	template_name = 'shop/seller.html'
+
+	def get( self, request, seller ):
+		items = Item.objects.filter(user=seller).order_by('-id')
+		return render(request, self.template_name, {'items':items})
