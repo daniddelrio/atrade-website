@@ -113,7 +113,7 @@ class Categories(TemplateView):
 		category_list = []
 		query = Q()
 		has_query = False
-		for name in range(0,len(category_list) + 1):
+		for name in range(0,12):
 			category = self.request.GET.get(str(name), None)
 			if( category != None ):
 				if( category == 'All'):
