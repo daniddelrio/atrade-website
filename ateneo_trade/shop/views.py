@@ -102,6 +102,26 @@ class Home(ListView):
 	model = Item
 	ordering = ['-id']
 
+	def get_queryset(self):
+
+		name = self.request.GET.get('search', None)
+
+		if (name != None ):
+			object_list = self.model.objects.filter(Q(name__icontains = name)|Q(category__icontains = name)|Q(user__first_name__icontains = name)|Q(user__last_name__icontains = name)|Q(description__icontains = name)).order_by('-id')
+		else:
+			object_list = self.model.objects.all().order_by('-id')
+
+		return object_list
+
+	def post( self, request ):
+		query = Q()
+		for item in request.POST.items():
+			if(item[0] =='csrfmiddlewaretoken'):
+				continue
+			query.add(Q(category=item[1]),Q.OR)
+		items = Item.objects.filter(query).order_by('-id')
+		return render( request, Categories.template_name, { 'items':items, 'data':request.POST.items() })
+
 class ViewItemDetail(TemplateView):
 	template_name = 'shop/item.html'
 
