@@ -120,15 +120,20 @@ class Categories(TemplateView):
 		category_list = []
 		query = Q()
 		has_query = False
-		for name in range(1,6):
+		for name in range(0,6):
 			category = self.request.GET.get(str(name), None)
 			if( category != None ):
+				if( category == 'All'):
+					category_list.append(name)
+					break
 				query.add(Q(category=category),Q.OR)
 				has_query = True
 				category_list.append(name)
 		
 		if( has_query ):
 			items = Item.objects.filter(query)
+		else:
+			items = Item.objects.all()
 
 		sort = self.request.GET.get('order', None)
 		selected_order = 'time'

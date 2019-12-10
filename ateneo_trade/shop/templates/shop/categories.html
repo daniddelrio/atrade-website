@@ -59,6 +59,10 @@ Categories
 		<div class="body row">
 			<div class="col categories mr-2 py-sm-4 px-sm-4">
 				<h5>Categories</h5> 
+				<div class="custom-control custom-checkbox mt-sm-3">
+					<input type="checkbox" class="custom-control-input" id="0" name="0" value="All">
+					<label class="custom-control-label" for="0">All</label>
+				 </div>
 				{% for cat in cats %}
 					<div class="custom-control custom-checkbox mt-sm-3">
 						<input type="checkbox" class="custom-control-input" id="{{ forloop.counter }}" name="{{ forloop.counter }}" value="{{ cat.1 }}">
