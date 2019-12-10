@@ -128,9 +128,24 @@ class Categories(TemplateView):
 				category_list.append(name)
 		
 		if( has_query ):
-			items = Item.objects.filter(query).order_by('-id')
-		print(category_list)
-		return render( request, self.template_name, { 'items':items, 'category_list':category_list, 'cats':Item.CATEGORIES })
+			items = Item.objects.filter(query)
+
+		sort = self.request.GET.get('order', None)
+		selected_order = 'time'
+		if sort:
+			if sort == 'time':
+				items = items.order_by('-id')
+			elif sort == 'time-rev':
+				items = items.order_by('id')
+				selected_order = 'time-rev'
+			elif sort == 'price':
+				items = items.order_by('price')
+				selected_order = 'price'
+			elif sort == 'price-rev':
+				items = items.order_by('-price')
+				selected_order = 'price-rev'
+
+		return render( request, self.template_name, { 'items':items, 'category_list':category_list, 'selected_order': selected_order, 'cats':Item.CATEGORIES })
 
 class SellerProfile(TemplateView):
 	template_name = 'shop/seller.html'
