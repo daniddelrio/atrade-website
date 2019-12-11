@@ -19,12 +19,11 @@ Seller Profile
 <div class="seller-container">
 	<div class="row">
 		<div class="seller-img col-md-2 col-sm-4">
-			<img src="{% static 'shop/assets/riana-big.svg' %}">
+			<img src="{% get_media_prefix %}{{ seller.profile.display_pic }}" alt="Riana" class="rounded-circle" style="height:100px; width: 100px; object-fit: cover;">
 		</div>
 		<div class="col">
 			{% with items|first as it %}
 				<h4 class="seller-name">{{ it.user.get_full_name }}</h4>
-				<h6 class="seller-text">Rating: {{ it.user.profile.trade_pts }}/5</h6>
 				<h6 class="seller-text">{{ it.user.profile.contact_num }}</h6>
 				<h6 class="seller-text">{{ it.user.profile.fb_link }}</h6>
 				<h6 class="seller-text">{{ it.user.profile.school }} {{ it.user.profile.grad_year }}</h6>

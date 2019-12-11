@@ -7,6 +7,21 @@ My Profile
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'shop/css/profile.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script>
+  	$(document).ready(function(e) {
+  	  $('#for-sale').click(function() {
+  	  	$("#unsold-items").css("display", "grid");
+  	  	$("#sold-items").css("display", "none");
+  	  });
+
+  	  $('#sold').click(function() {
+  	  	$("#unsold-items").css("display", "none");
+  	  	$("#sold-items").css("display", "grid");
+  	  });
+  	});
+  </script>
 {% endblock %}
 
 {% block header %}
@@ -19,11 +34,10 @@ My Profile
 <div class="seller-container">
 	<div class="row">
 		<div class="seller-img col-md-2 col-sm-4">
-			<img src="{% static 'shop/assets/riana-big.svg' %}">
+			<img src="{% get_media_prefix %}{{ user.profile.display_pic }}" alt="Riana" class="rounded-circle" style="height:100px; width: 100px; object-fit: cover;">
 		</div>
 		<div class="col">
     		<h4 class="seller-name">{{ user.get_full_name }}</h4>
-    		<h6 class="seller-text">Rating: {{ user.profile.trade_pts }}/5</h6>
 			<h6 class="seller-text">{{ user.profile.contact_num }}</h6>
 			<h6 class="seller-text">{{ user.profile.fb_link }}</h6>
 			<h6 class="seller-text">{{ user.profile.school }} {{ user.profile.grad_year }}</h6>
@@ -31,15 +45,28 @@ My Profile
 	</div>
 	<br>
 	<div class="item-buttons d-flex flex-wrap">
-		<button type="submit" class="btn btn-primary font-weight-bold item-btn">
+		<button type="button" class="btn btn-primary font-weight-bold item-btn" id="for-sale">
           Items for Sale
 		</button>
-		<a role="button" class="btn btn-light font-weight-bold item-btn ml-4 py-3">
+		<button type="button" class="btn btn-light font-weight-bold item-btn ml-4 py-3" id="sold">
           Items Sold
-        </a>
+        </button>
 	</div>
-	<div class="items mt-5">
+	<div class="items mt-5" id="unsold-items">
 		{% for item in items %}
+			<div class="card item-card">
+				{% with item.image_set.all|first as img %}
+					<a href="{% url 'view-item-detail' item.pk %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>
+				{% endwith %}
+				<div class="item-body mx-3 py-2">
+					<a href="{% url 'view-item-detail' item.pk %}"><h5 class="item-title">{{ item.name }}</h5></a>
+					<h6 class="item-price">Php {{ item.price }}</h6>
+				  </div>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="items mt-5" id="sold-items">
+		{% for item in sold_items %}
 			<div class="card item-card">
 				{% with item.image_set.all|first as img %}
 					<a href="{% url 'view-item-detail' item.pk %}"><img class="card-img-top" src="/media/{{ img.image }}" alt="{{item.name}}"></a>

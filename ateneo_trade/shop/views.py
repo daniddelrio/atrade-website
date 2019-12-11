@@ -20,11 +20,11 @@ from django.views.generic.list import ListView
 def update_profile(request):
 	if request.method == 'POST':
 		user_form = UserForm(request.POST, instance=request.user)
-		profile_form = ProfileForm(request.POST, instance=request.user.profile)
+		profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
 		if user_form.is_valid() and profile_form.is_valid():
 			user_form.save()
 			profile_form.save()
-			return redirect('profile')
+			return redirect('home')
 		else:
 			messages.error(request, _('Please correct the error below.'))
 	else:
@@ -32,7 +32,7 @@ def update_profile(request):
 		profile_form = ProfileForm(instance=request.user.profile)
 	return render(request, 'shop/update_profile.html', {
 		'user_form': user_form,
-		'profile_form': profile_form
+		'profile_form': profile_form,
 	})
 
 @login_required
@@ -42,6 +42,18 @@ def profile(request):
 @login_required
 def post_item(request):
 	return render(request, 'shop/post_item.html')
+
+@login_required
+def change_status(request, pk):
+	if Item.objects.filter(pk=pk).exists():
+		item = Item.objects.get(pk=pk)
+
+		if request.user == item.user:
+			item.is_sold = not item.is_sold
+			item.save()
+			return redirect('view-item-detail', id=pk)
+
+	return redirect('home')
 
 def Logout(request):
 	logout(request)
@@ -94,10 +106,12 @@ class Home(ListView):
 
 		name = self.request.GET.get('search', None)
 
+		object_list = self.model.objects.filter(is_sold=False)
+
 		if (name != None ):
-			object_list = self.model.objects.filter(Q(name__icontains = name)|Q(category__icontains = name)|Q(user__first_name__icontains = name)|Q(user__last_name__icontains = name)|Q(description__icontains = name)).order_by('-id')
+			object_list = object_list.filter(Q(name__icontains = name)|Q(category__icontains = name)|Q(user__first_name__icontains = name)|Q(user__last_name__icontains = name)|Q(description__icontains = name)).order_by('-id')
 		else:
-			object_list = self.model.objects.all().order_by('-id')
+			object_list = object_list.order_by('-id')
 
 		return object_list
 
@@ -122,14 +136,15 @@ class ViewYourItems(TemplateView):
 	template_name = 'shop/profile.html'
 
 	def get( self, request ):
-		items = Item.objects.filter(user=request.user)
-		return render(request, self.template_name, { 'items':items })
+		items = Item.objects.filter(user=request.user, is_sold=False)
+		sold_items = Item.objects.filter(user=request.user, is_sold=True)
+		return render(request, self.template_name, { 'items':items, 'sold_items':sold_items })
 
 class Categories(TemplateView):
 	template_name = 'shop/categories.html'
 
 	def get(self, request):
-		items = Item.objects.all().order_by('-id')
+		items = Item.objects.filter(is_sold=False)
 		category_list = []
 		query = Q()
 		has_query = False
@@ -144,9 +159,7 @@ class Categories(TemplateView):
 				category_list.append(name)
 
 		if( has_query ):
-			items = Item.objects.filter(query)
-		else:
-			items = Item.objects.all()
+			items = items.filter(query)
 
 		sort = self.request.GET.get('order', None)
 		selected_order = 'time'
@@ -170,5 +183,5 @@ class SellerProfile(TemplateView):
 	template_name = 'shop/seller.html'
 
 	def get( self, request, seller ):
-		items = Item.objects.filter(user=seller).order_by('-id')
-		return render(request, self.template_name, {'items':items})
+		items = Item.objects.filter(user=seller, is_sold=False).order_by('-id')
+		return render(request, self.template_name, {'items':items, 'seller': User.objects.get(pk=seller)})

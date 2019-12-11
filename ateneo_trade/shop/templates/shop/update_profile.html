@@ -7,6 +7,11 @@
 
 {% block links %}
   <link rel="stylesheet" href="{% static 'shop/css/feed.css' %}">
+  <script>
+     function chooseFile() {
+        $("#display-pic").click();
+     }
+  </script>
 {% endblock %}
 
 {% block header %}
@@ -16,12 +21,16 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 {% csrf_token %}
 <div class="d-flex justify-content-center">
   <div class="post-form w-50">
-    <div class="form-row mb-lg-1 d-flex justify-content-center">
-      <img src="{% static 'shop/assets/riana.svg' %}" class="rounded-circle" style="height:200px; margin-left:15px; padding: 10px;" />
+    <div class="form-row mb-lg-1 d-flex justify-content-center align-items-center">
+      <div style="height:0px;overflow:hidden">
+        {{ profile_form.display_pic }}
+      </div>
+      <img src="{% get_media_prefix %}{{ request.user.profile.display_pic }}" class="rounded-circle" style="height:200px; width: 200px; object-fit: cover; margin-left:15px; padding: 10px;" />
+      <button type="button" onclick="chooseFile();" class="btn btn-light" style="height: 40px;">Upload Display Picture</button>
     </div>
 
     <div class="form-column mt-sm-4 ml-sm-2">

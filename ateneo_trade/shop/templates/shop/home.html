@@ -20,7 +20,7 @@
 	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
 		<div class="category-title">
 			<form method="GET" action="{% url 'categories' %}">
-                <input type="hidden" name="1" value="Clothes" checked>
+                <input type="hidden" name="4" value="Clothes" checked>
                 <button style="background-color: white;
 	            color: #333333;
                 border: 0;
@@ -32,10 +32,10 @@
             </form>
 		</div>
 	</div>
-	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
+	<div class="category-card" style="background-image: url({% static 'shop/assets/textbook.png' %}); background-size: 100%; background-repeat: no-repeat;">
 		<div class="category-title">
             <form method="GET" action="{% url 'categories' %}">
-                <input type="hidden" name="2" value="Academic Books" checked>
+                <input type="hidden" name="1" value="Academic Books" checked>
                 <button style="background-color: white;
 	            color: #333333;
                 border: 0;
@@ -47,10 +47,10 @@
             </form>
 		</div>
 	</div>
-	<div class="category-card" style="background-image: url({% static 'shop/assets/clothes.svg' %})">
+	<div class="category-card" style="background-image: url({% static 'shop/assets/fiction.jpg' %}); background-size: 105%; background-repeat: no-repeat;">
 		<div class="category-title">
             <form method="GET" action="{% url 'categories' %}">
-                <input type="hidden" name="3" value="Non-academic Books" checked>
+                <input type="hidden" name="2" value="Non-academic Books" checked>
                 <button style="background-color: white;
 	            color: #333333;
                 border: 0;
@@ -102,12 +102,11 @@
                         <span class="card-title">Seller Information</span>
                         <div class="seller-info row mt-md-1">
                             <div class="seller-picture col-md-2">
-                                <img src="{% static 'shop/assets/riana.svg' %}" alt="Riana">
+                                <img src="{% get_media_prefix %}{{ item.user.profile.display_pic }}" alt="Riana" class="rounded-circle" style="height:45px; width: 45px; object-fit: cover;">
                             </div>
                             <div class="col-md-7 div-info">
                                 <a href="{% url 'seller-profile' item.user.pk %}"><h6 class="seller-name seller-contact">{{ item.user.get_full_name }}</h6></a>
                                 <h6 class="seller-contact">{{ item.user.profile.contact_num }}</h6>
-                                <h6 class="seller-contact">Rating: {{ item.user.profile.trade_pts }}/5</h6>
                             </div>
                             <div class="seller-message col-md-2">
                                 <a href="http://www.{{item.user.profile.fb_link}}">
