@@ -1,4 +1,5 @@
 import os
+from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -8,10 +9,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o#nl=22a!%u%kq-k^%x+vv3_ke%-a07*x_*#5jg!s3h$0)t1!-'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool, default=True)
 
 ALLOWED_HOSTS = []
 
@@ -70,7 +71,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'atrade_db',
 		'USER': 'root',
-		'PASSWORD': '',
+		'PASSWORD': 'admin',
 		'HOST': '',
 		'PORT': '',
     }
@@ -158,6 +159,7 @@ LOGIN_URL = '/account/login/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '628380427880-alm5sn82vqr2b0voufqpdhleee9dahf8.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'U3oZadw2Bqt60o7mNszsmhks'
-SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ['obf.ateneo.edu', 'ateneo.edu']
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = config('SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS', cast=Csv())
+
