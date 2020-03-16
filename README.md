@@ -2,6 +2,9 @@
 
 A website will be made using **Django** for Ateneo Trade.
 
+**You may access the prototype website on Heroku at https://ateneotrade.herokuapp.com/**
+
+
 **To set up the Django project after cloning this repo, please install MySQL on your computers and proceed to the virtualenv section of this README first before anything. For the MySQL installation, look it up on the [website](https://dev.mysql.com/)**
 
 ## Important Links
