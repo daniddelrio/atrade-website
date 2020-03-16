@@ -1,0 +1,1 @@
+web: gunicorn ateneo_trade.wsgi --log-file -
